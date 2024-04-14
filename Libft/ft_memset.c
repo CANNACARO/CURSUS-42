@@ -6,10 +6,9 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:43:41 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/13 21:06:33 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/04/14 09:05:13 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 
 void	*ft_memset(void *b, int c, size_t len)
 {
