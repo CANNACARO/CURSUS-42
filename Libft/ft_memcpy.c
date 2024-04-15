@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcaro-lo <jcaro-lo@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 15:21:19 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/14 17:17:37 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/04/15 19:07:27 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	size_t count;
-	char	*str_dest;
-	const char	*str_src;
+	size_t		count;
+	//char		*str_dest;
+	//const char	*str_src;
 
 	count = 0;
-	str_dest = dst;
-	str_src = src;
+	if (!dst && !src)
+		return (NULL);
 	while (count < n)
 	{
-		str_dest[count] = str_src[count];
+		((unsigned char *)dst)[count] = ((unsigned char *)src)[count];
 		count++;
 	}
 	return (dst);
@@ -31,8 +31,8 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 
 int	main(void)
 {
-	char	source[]= "hola";
-	char	destiny[]= "adiossss";
+	char	source[]= "";
+	char	destiny[]= "";
 
-	printf("%s",ft_memcpy(destiny,source,5));
+	printf("%s",(unsigned char *)ft_memcpy(destiny,source,2));
 }
