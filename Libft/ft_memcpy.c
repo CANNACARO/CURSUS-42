@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 15:21:19 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/15 19:07:27 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:51:21 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	size_t		count;
-	//char		*str_dest;
-	//const char	*str_src;
+	size_t	count;
 
 	count = 0;
 	if (!dst && !src)
@@ -29,10 +27,10 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 	return (dst);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	char	source[]= "";
 	char	destiny[]= "";
 
 	printf("%s",(unsigned char *)ft_memcpy(destiny,source,2));
-}
+}*/
