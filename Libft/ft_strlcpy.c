@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 17:31:43 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/17 20:00:36 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/04/18 21:14:36 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (src_size);
 }
 
-/*int	main(void)
+int	main(void)
 {
-	char src[]="hola";
-	char dst[]= "adios";
+	char src[]="Hola";
+	char dst[]= "Adios";
 	size_t	x;
 
 	x = ft_strlcpy(dst, src, 0);
 	printf("%s   %ld", dst, x);
-}*/
+}
