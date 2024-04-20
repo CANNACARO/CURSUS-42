@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 17:29:26 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/16 20:51:28 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/04/20 11:56:22 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t			count;
-	
+	size_t	count;
+
 	count = 0;
 	if (!dest && !src)
 		return (NULL);
@@ -41,8 +41,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 /*int	main(void)
 {
 	char src[]= "hola";
-	char dest[]= "adiossss";
+	char dest[20];
 
-	ft_memmove(dest,src,4);
+	ft_memmove(dest,src,30);
 	printf("%s", dest);
 }*/
