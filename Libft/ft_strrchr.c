@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/14 17:33:20 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/21 13:17:32 by jcaro-lo         ###   ########.fr       */
+/*   Created: 2024/04/21 11:53:55 by jcaro-lo          #+#    #+#             */
+/*   Updated: 2024/04/21 12:09:21 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	const char *aux;
+	int end;
 
-	i = 0;
-	while (i < n && s1[i] != '\0' && s2[i] != '\0')
+	aux = "";
+	end = ft_strlen(s);
+	c = (char) c;
+	while (end >= 0)
 	{
-		if ((unsigned char)s1[i] != (unsigned char)s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		if (c == s[end])
+		{
+			aux = &s[end];
+			return ((char *)aux);
+		}
+		end--;
 	}
-	if (i < n)
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	return (0);
+	return (NULL);
 }

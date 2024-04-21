@@ -10,4 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
+char	*ft_strchr(const char *s, int c)
+{
+	const char *str_occur;
+	int			i;
+
+	str_occur = "";
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if ((char)c == s[i])
+		{
+			str_occur = &s[i];
+			return ((char *)str_occur);
+		}
+		i++;
+	}
+	if ((char)c == '\0')
+		{
+			str_occur = &s[i];
+			return((char *)str_occur);
+		}
+	return (NULL);
+}
