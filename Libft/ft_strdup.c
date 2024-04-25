@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prueba.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 16:54:53 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/24 20:13:57 by jcaro-lo         ###   ########.fr       */
+/*   Created: 2024/04/25 21:58:02 by jcaro-lo          #+#    #+#             */
+/*   Updated: 2024/04/25 22:22:02 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int	main(void)
+char *ft_strdup(const char *s1)
 {
-	char *n = "+-54";
-        int i1 = atoi(n);
+	char	*point;
+	size_t	i;
 
-	printf("%d", i1);
+	i = 0;
+	point = malloc(ft_strlen(s1) + 1);
+	if (!point)
+		return (NULL);
+	while (s1[i])
+	{
+		point[i] = s1[i];
+		i++;
+	}
+	point[i] = '\0';
+	return (point);
 }
-
-/*
-char *n = "\t\v\f\r\n \f- \f\t\n\r    06050"; --> 0
-
-
-*/
-

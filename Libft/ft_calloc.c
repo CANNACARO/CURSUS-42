@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prueba.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 16:54:53 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/24 20:13:57 by jcaro-lo         ###   ########.fr       */
+/*   Created: 2024/04/25 21:20:24 by jcaro-lo          #+#    #+#             */
+/*   Updated: 2024/04/25 21:54:23 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int	main(void)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char *n = "+-54";
-        int i1 = atoi(n);
+	unsigned char	*point;
+	size_t			i;
 
-	printf("%d", i1);
+	i  = 0;
+	point = malloc(count * size);
+	if (!point)
+		return (NULL);
+	while(i < count * size)
+	{
+		point[i] = '\0';
+		i++;
+	}
+	return (point);
 }
-
-/*
-char *n = "\t\v\f\r\n \f- \f\t\n\r    06050"; --> 0
-
-
-*/
-
