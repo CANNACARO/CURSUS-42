@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 16:54:53 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/05/03 09:17:18 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:50:35 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,3 @@
 
     return 0;
 }*/
-
-int main()
-{
-	int	str_size;
-	int n;
-
-	n = -2147483648;
-	str_size = 0;
-	if (n < 0)
-		str_size++;
-	while (n / 10 != 0)
-	{
-		str_size++;
-		n = n / 10;
-	}
-		str_size++;
-	printf("%d",str_size);
-	return (0);
-}
