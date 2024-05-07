@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 20:10:31 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/05/06 20:16:11 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:11:12 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	if (n < 0)
 	{
-		write(1, "-", 1);
+		write(fd, "-", 1);
 	}
 	get_digit(n, fd);
 }
