@@ -6,13 +6,13 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 21:58:02 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/25 22:22:02 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:35:30 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*point;
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:53:55 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/04/21 12:09:21 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:38:33 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	const char *aux;
-	int end;
+	const char	*aux;
+	int			end;
 
 	aux = "";
 	end = ft_strlen(s);
