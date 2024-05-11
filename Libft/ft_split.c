@@ -6,12 +6,11 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 09:26:22 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/05/11 14:29:31 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:37:03 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 static int	words_counter(char const *s, char c)
 {
@@ -35,7 +34,8 @@ static int	words_counter(char const *s, char c)
 		count++;
 	return (count);
 }
-static char 	*fill_word(char const *s, char c, int i)
+
+static char	*fill_word(char const *s, char c, int i)
 {
 	char	*word;
 	int		count;
@@ -59,6 +59,7 @@ static char 	*fill_word(char const *s, char c, int i)
 	word[count] = '\0';
 	return (word);
 }
+
 static void	*free_array(char **res, int cont)
 {
 	int	i;
