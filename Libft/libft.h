@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:38:16 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/05/11 19:21:38 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:36:34 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,8 @@ void	ft_putnbr_fd(int n, int fd);
 char	**ft_split(char const *s, char c);
 
 #endif
+typedef struct	s_list
+{
+	void	*content;
+	struct s_list	*next;
+} t_list;
