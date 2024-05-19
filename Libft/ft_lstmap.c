@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 12:10:31 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/05/19 13:11:54 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/05/19 15:25:35 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,21 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*res_lst;
-	t_list	*root;
+	t_list	*aux;
 
 	res_lst = NULL;
-	root = res_lst;
 	if (!lst)
 		return (NULL);
 	while (lst)
 	{
-		res_lst = malloc(sizeof(t_list));
-		if (!res_lst)
+		aux = ft_lstnew(f(lst -> content));
+		if (!aux)
 		{
-			ft_lstclear(&root, del);
+			ft_lstclear(&res_lst, del);
 			return (NULL);
 		}
-		res_lst = f(lst -> content);
-		res_lst = res_lst -> next;
+		ft_lstadd_back(&res_lst, aux);
 		lst = lst -> next;
 	}
-	res_lst = NULL;
 	return (res_lst);
 }
