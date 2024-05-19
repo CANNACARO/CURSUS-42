@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 09:26:22 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/05/11 16:37:03 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/05/19 18:03:40 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,15 @@ static int	words_counter(char const *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		if (i == 0)
+		while (s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
 		{
-			while (s[i] == c)
+			count++;
+			while (s[i] && s[i] != c)
 				i++;
 		}
-		if (s[i] == c && s[i - 1] != c)
-			count++;
-		i++;
 	}
-	if (s[i - 1] != c)
-		count++;
 	return (count);
 }
 
