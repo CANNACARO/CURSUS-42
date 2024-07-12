@@ -6,11 +6,9 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:09:20 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/06/20 16:10:58 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/06/30 11:44:43 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 #include <stdio.h>
 
