@@ -6,13 +6,11 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 10:37:19 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/06/20 11:18:59 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/07/13 15:55:11 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_print_char(char c);
+#include "ft_printf.h"
 
 static int	count_char(int num)
 {

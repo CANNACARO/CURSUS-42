@@ -6,14 +6,11 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:13:12 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/06/20 11:17:06 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/07/13 17:03:12 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_print_char(char c);
-int	ft_print_string(char *s);
+#include "ft_printf.h"
 
 static int	count_char(unsigned long long value)
 {
@@ -32,7 +29,7 @@ static void	ft_conv_hexa(unsigned long long value)
 {
 	char	*base;
 
-	base = "0123456789ABCDEF";
+	base = "0123456789abcdef";
 	if (value >= 16)
 	{
 		ft_conv_hexa(value / 16);
@@ -49,11 +46,11 @@ int	ft_print_ptr(void *ptr)
 	int	size;
 
 	size = 0;
-	size += ft_print_string("0x");
-	if (ptr == 0)
-		size += ft_print_char('0');
+	if (!ptr)
+		return (ft_print_string(("(nil)")));
 	else
 	{
+		size += ft_print_string("0x");
 		ft_conv_hexa((unsigned long long) ptr);
 		size += count_char((unsigned long long) ptr);
 	}
