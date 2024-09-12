@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 10:42:06 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/01 15:29:57 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:42:50 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ char	*ft_strjoin(const char *s1, const char *s2)
 }
 
 // checkstack() looks for a '\n' in the middle of the buffer
-int	checkstack(char* stack)
+int	checkstack(char *stack)
 {
 	int	i;
 
 	i = 0;
-	while(stack[i] != '\0')
+	while (stack[i] != '\0')
 	{
-		if(stack[i] == '\n')
-		return (1);
+		if (stack[i] == '\n')
+			return (1);
 		i++;
 	}
 	return (0);
