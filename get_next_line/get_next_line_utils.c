@@ -6,11 +6,49 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 10:42:06 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/12 18:42:50 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:37:27 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	char	*str;
+	size_t	count;
+
+	str = s;
+	count = 0;
+	while (count < n)
+	{
+		str[count] = '\0';
+		count++;
+	}
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	const char	*str_occur;
+	int			i;
+
+	str_occur = "";
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if ((char)c == s[i])
+		{
+			str_occur = &s[i];
+			return ((char *)str_occur);
+		}
+		i++;
+	}
+	if ((char)c == '\0')
+	{
+		str_occur = &s[i];
+		return ((char *)str_occur);
+	}
+	return (NULL);
+}
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {

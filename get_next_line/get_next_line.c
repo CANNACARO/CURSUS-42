@@ -6,28 +6,39 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 18:50:04 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/12 19:34:51 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:50:46 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-void	updatestack(char *stack, int cnt)
+char	*updatestack(char *stack)
 {
-	char	*tmp;
+	char	*aux;
+	char	*new_stack;
 	int		i;
 
 	i = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(stack) - cnt + 1));
-	while (stack[cnt + i])
+	new_stack = ft_strchr(stack, '\n');
+	if (new_stack == NULL)
 	{
-		tmp[i] = stack[cnt + i];
+		free (stack);
+		stack = NULL;
+		return (NULL);
+	}
+	new_stack++;
+	aux = malloc((ft_strlen(new_stack) + 1) * sizeof(char));
+	if (!aux)
+		return (NULL);
+	while (new_stack[i])
+	{
+		aux[i] = new_stack[i];
 		i++;
 	}
-	tmp[i] = '\0';
+	aux[i] = '\0';
 	free(stack);
-	stack = tmp;
+	return (aux);
 }
 
 char	*extractline(char *stack)
@@ -36,7 +47,7 @@ char	*extractline(char *stack)
 	char	*line;
 
 	i = 0;
-	while (stack[i] != '\n')
+	while (stack[i] != '\n' && stack[i])
 		i++;
 	line = (char *)malloc(sizeof(char) * i + 2);
 	if (!line)
@@ -54,7 +65,6 @@ char	*extractline(char *stack)
 	}
 	line[i] = '\0';
 	i++;
-	updatestack(stack, i);
 	return (line);
 }
 
@@ -67,12 +77,14 @@ char	*fillstack(char *buf, int fd, char *stack)
 	{
 		len = read(fd, buf, BUFFER_SIZE);
 		buf[BUFFER_SIZE] = '\0';
+		if (len == 0)
+			ft_bzero(buf, BUFFER_SIZE);
 		stack = ft_strjoin(stack, buf);
 		if (checkstack(stack) == 1)
 			break ;
 	}
 	free(buf);
-	if (len <= 0)
+	if (len == -1)
 	{
 		free(stack);
 		return (NULL);
@@ -91,30 +103,33 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
+	ft_bzero(buf, BUFFER_SIZE);
 	if (!stack)
 		stack = "";
 	stack = fillstack(buf, fd, stack);
 	line = extractline(stack);
+	stack = updatestack(stack);
 	return (line);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int		fd;
 	char	*line;
+	int		i;
 
+	i = 0;
 	fd = open("text1.txt", O_RDONLY);
-	line = get_next_line(fd);
-	while (line)
+	while (i < 4)
 	{
-		printf("%s", line);
-		free(line);
 		line = get_next_line(fd);
+		printf("%s", line);
+		i++;
 	}
 	free(line);
 	close(fd);
 	return (0);
-}
+}*/
 
 /*int	main(void)
 {
