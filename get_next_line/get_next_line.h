@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:05:06 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/14 16:37:41 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/15 10:42:19 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char	*fillstack(char *buf, int fd, char *stack);
 char	*extractline(char *stack);
 char	*updatestack(char *stack);
 char	*ft_strjoin(const char *s1, const char *s2);
-int		checkstack(char *stack);
-int		ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
+size_t		checkstack(char *stack);
+size_t		ft_strlen(const char *s);
+char	*ft_strchr(const char *s, size_t c);
 void	ft_bzero(void *s, size_t n);
 
 #endif

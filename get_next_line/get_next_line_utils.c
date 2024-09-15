@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 10:42:06 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/14 16:37:27 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/15 14:21:11 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, size_t c)
 {
 	const char	*str_occur;
-	int			i;
+	size_t			i;
 
+	if (!s)
+		return (NULL);
 	str_occur = "";
 	i = 0;
 	while (s[i] != '\0')
@@ -53,8 +55,8 @@ char	*ft_strchr(const char *s, int c)
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*p;
-	int		i;
-	int		j;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	j = 0;
@@ -76,9 +78,9 @@ char	*ft_strjoin(const char *s1, const char *s2)
 }
 
 // checkstack() looks for a '\n' in the middle of the buffer
-int	checkstack(char *stack)
+size_t	checkstack(char *stack)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (stack[i] != '\0')
@@ -90,9 +92,9 @@ int	checkstack(char *stack)
 	return (0);
 }
 
-int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	unsigned int	count;
+	size_t	count;
 
 	count = 0;
 	while (s[count] != '\0')

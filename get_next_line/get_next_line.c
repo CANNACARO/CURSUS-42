@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 18:50:04 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/14 17:50:46 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:42:36 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,16 @@ char	*updatestack(char *stack)
 {
 	char	*aux;
 	char	*new_stack;
-	int		i;
+	size_t		i;
 
 	i = 0;
 	new_stack = ft_strchr(stack, '\n');
 	if (new_stack == NULL)
-	{
-		free (stack);
-		stack = NULL;
-		return (NULL);
-	}
+		return (free(stack), stack = NULL, NULL);
 	new_stack++;
 	aux = malloc((ft_strlen(new_stack) + 1) * sizeof(char));
 	if (!aux)
-		return (NULL);
+		return (free(stack), stack = NULL, NULL);
 	while (new_stack[i])
 	{
 		aux[i] = new_stack[i];
@@ -43,13 +39,15 @@ char	*updatestack(char *stack)
 
 char	*extractline(char *stack)
 {
-	int		i;
+	size_t		i;
 	char	*line;
 
 	i = 0;
+	if (stack == NULL || stack[i] == '\0')
+		return (NULL);
 	while (stack[i] != '\n' && stack[i])
 		i++;
-	line = (char *)malloc(sizeof(char) * i + 2);
+	line = (char *)malloc(sizeof(char) * (i + 2));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -64,24 +62,22 @@ char	*extractline(char *stack)
 		i++;
 	}
 	line[i] = '\0';
-	i++;
 	return (line);
 }
 
 char	*fillstack(char *buf, int fd, char *stack)
 {
-	ssize_t	len;
+	size_t	len;
 
 	len = 1;
 	while (len > 0)
 	{
 		len = read(fd, buf, BUFFER_SIZE);
 		buf[BUFFER_SIZE] = '\0';
-		if (len == 0)
-			ft_bzero(buf, BUFFER_SIZE);
 		stack = ft_strjoin(stack, buf);
 		if (checkstack(stack) == 1)
 			break ;
+		ft_bzero(buf, BUFFER_SIZE);
 	}
 	free(buf);
 	if (len == -1)
@@ -99,7 +95,7 @@ char	*get_next_line(int fd)
 	char		*buf;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (NULL);
+		return (free(stack), stack = NULL, NULL);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
@@ -111,16 +107,15 @@ char	*get_next_line(int fd)
 	stack = updatestack(stack);
 	return (line);
 }
-
-/*int	main(void)
+int	main(void)
 {
 	int		fd;
 	char	*line;
-	int		i;
+	size_t		i;
 
 	i = 0;
 	fd = open("text1.txt", O_RDONLY);
-	while (i < 4)
+	while (i < 5)
 	{
 		line = get_next_line(fd);
 		printf("%s", line);
@@ -129,11 +124,11 @@ char	*get_next_line(int fd)
 	free(line);
 	close(fd);
 	return (0);
-}*/
+}
 
 /*int	main(void)
 {
-	int	fd;
+	size_t	fd;
 
 	char* line;
 	fd= open("text1.txt", O_RDONLY);
@@ -142,5 +137,4 @@ char	*get_next_line(int fd)
 	free (line);
 	close (fd);
 	return (0);
-}
-*/
+}*/
