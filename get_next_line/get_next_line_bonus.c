@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/31 18:50:04 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/21 17:43:43 by jcaro-lo         ###   ########.fr       */
+/*   Created: 2024/09/21 17:14:09 by jcaro-lo          #+#    #+#             */
+/*   Updated: 2024/09/21 17:42:23 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,40 +99,70 @@ char	*fillstack(char *buf, int fd, char *stack)
 
 char	*get_next_line(int fd)
 {
-	static char	*stack = NULL;
+	static char	*stack[4096] = {NULL};
 	char		*line;
 	char		*buf;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (my_free(stack));
+		return (my_free(stack[fd]));
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
 	ft_bzero(buf, BUFFER_SIZE + 1);
-	stack = fillstack(buf, fd, stack);
-	line = extractline(stack);
-	stack = updatestack(stack);
+	stack[fd] = fillstack(buf, fd, stack[fd]);
+	line = extractline(stack[fd]);
+	stack[fd] = updatestack(stack[fd]);
 	return (line);
 }
 
 /*int	main(void)
 {
-	int		fd;
+	int		fd1;
+	int		fd2;
+	int		fd3;
 	char	*line;
-	size_t	i;
-
-	i = 0;
-	fd = open("text1.txt", O_RDONLY);
-	while (i < 5)
+	
+	fd1 = open("text1.txt", O_RDONLY);
+	fd2 = open("text2.txt", O_RDONLY);
+	fd3 = open("text3.txt", O_RDONLY);
+	line = get_next_line(fd1);
+	if (line)
 	{
-		line = get_next_line(fd);
-		if (line)
-		{
-			printf("%s", line);
-			my_free(line);
-		}
-		i++;
+		printf("%s", line);
+		my_free(line);
 	}
-	close(fd);
+	line = get_next_line(fd2);
+	if (line)
+	{
+		printf("%s", line);
+		my_free(line);
+	}
+	line = get_next_line(fd1);
+	if (line)
+	{
+		printf("%s", line);
+		my_free(line);
+	}
+	line = get_next_line(fd1);
+	if (line)
+	{
+		printf("%s", line);
+		my_free(line);
+	}
+	line = get_next_line(fd1);
+	if (line)
+	{
+		printf("%s", line);
+		my_free(line);
+	}
+	line = get_next_line(fd3);
+	if (line)
+	{
+		printf("%s", line);
+		my_free(line);
+	}
+	close(fd1);
+	close(fd2);
+	close(fd3);
 	return (0);
 }*/
