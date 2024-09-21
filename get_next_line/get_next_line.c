@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 18:50:04 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/15 15:42:36 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/17 20:57:32 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*extractline(char *stack)
 		i++;
 	line = (char *)malloc(sizeof(char) * (i + 2));
 	if (!line)
-		return (NULL);
+		return (free(stack), stack = NULL, NULL);
 	i = 0;
 	while (stack[i] && stack[i] != '\n')
 	{
@@ -67,19 +67,24 @@ char	*extractline(char *stack)
 
 char	*fillstack(char *buf, int fd, char *stack)
 {
-	size_t	len;
+	ssize_t	len;
+	char	*aux;
 
 	len = 1;
 	while (len > 0)
 	{
 		len = read(fd, buf, BUFFER_SIZE);
 		buf[BUFFER_SIZE] = '\0';
-		stack = ft_strjoin(stack, buf);
+		aux = stack;
+		stack = ft_strjoin(aux, buf);
+		free(aux);
+		aux = NULL;
 		if (checkstack(stack) == 1)
 			break ;
 		ft_bzero(buf, BUFFER_SIZE);
 	}
-	free(buf);
+	free(aux);
+	free (buf);
 	if (len == -1)
 	{
 		free(stack);
@@ -119,9 +124,10 @@ int	main(void)
 	{
 		line = get_next_line(fd);
 		printf("%s", line);
+		free(line);
 		i++;
 	}
-	free(line);
+	
 	close(fd);
 	return (0);
 }
