@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 10:42:06 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/17 20:54:50 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:24:03 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,18 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-char	*ft_strchr(const char *s, size_t c)
+char	*ft_strchr(const char *s, int c)
 {
-	const char	*str_occur;
-	size_t			i;
+	int	i;
 
 	if (!s)
 		return (NULL);
-	str_occur = "";
 	i = 0;
 	while (s[i] != '\0')
 	{
 		if ((char)c == s[i])
-		{
-			str_occur = &s[i];
-			return ((char *)str_occur);
-		}
+			return ((char *)&s[i]);
 		i++;
-	}
-	if ((char)c == '\0')
-	{
-		str_occur = &s[i];
-		return ((char *)str_occur);
 	}
 	return (NULL);
 }
@@ -55,34 +45,37 @@ char	*ft_strchr(const char *s, size_t c)
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*p;
-	size_t		i;
-	size_t		j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
 	p = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!p)
 		return (NULL);
-	while (s1[i])
+	while (s1 && s1[i])
 	{
 		p[i] = s1[i];
 		i++;
 	}
-	while (s2[j])
+	while (s2 && s2[j])
 	{
 		p[i + j] = s2[j];
 		j++;
 	}
 	p[i + j] = 0;
+	if (s1 != NULL && *s1 != '\0')
+		my_free ((void *) s1);
 	return (p);
 }
 
-// checkstack() looks for a '\n' in the middle of the buffer
 size_t	checkstack(char *stack)
 {
 	size_t	i;
 
 	i = 0;
+	if (!stack)
+		return (0);
 	while (stack[i] != '\0')
 	{
 		if (stack[i] == '\n')
@@ -96,6 +89,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	count;
 
+	if (!s)
+		return (0);
 	count = 0;
 	while (s[count] != '\0')
 		count++;
