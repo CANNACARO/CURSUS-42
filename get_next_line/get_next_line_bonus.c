@@ -6,11 +6,11 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:14:09 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/21 17:42:23 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/22 11:08:48 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 void	*my_free(void *ptr)
@@ -115,7 +115,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*int	main(void)
+int	main(void)
 {
 	int		fd1;
 	int		fd2;
@@ -165,4 +165,4 @@ char	*get_next_line(int fd)
 	close(fd2);
 	close(fd3);
 	return (0);
-}*/
+}
