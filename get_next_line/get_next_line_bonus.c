@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:14:09 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/22 11:08:48 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/28 10:19:18 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int		fd1;
 	int		fd2;
@@ -165,4 +165,4 @@ int	main(void)
 	close(fd2);
 	close(fd3);
 	return (0);
-}
+}*/

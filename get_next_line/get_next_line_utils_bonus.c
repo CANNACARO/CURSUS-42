@@ -6,11 +6,11 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:15:36 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/09/21 17:15:47 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/09/28 10:15:17 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	ft_bzero(void *s, size_t n)
 {
