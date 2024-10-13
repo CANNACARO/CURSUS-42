@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:16:31 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/10/05 11:03:03 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/10/13 15:28:14 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void	send_signals(int pid, char *str)
 		j = 0;
 		while (j < 8)
 		{
-			if (((str[i] >> (7 - i)) & 1) == 0)
+			if (((str[i] >> (7 - j) & 1) == 0))
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(50);
+			usleep(500);
 			j++;
 		}
 		i++;
@@ -64,7 +64,7 @@ void	send_signals(int pid, char *str)
 	while (j < 8)
 	{
 		kill(pid, SIGUSR1);
-		usleep(50);
+		usleep(500);
 		j++;
 	}
 }
