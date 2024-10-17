@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:36:02 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/10/14 17:48:52 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:24:01 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int	two_power(int number)
 {
@@ -50,28 +50,35 @@ char	*str_record(char *str, int ascii_char)
 	return (tmp);
 }
 
-void	sig_handler(int sig)
+void	print_message(char *str)
+{
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
+	free(str);
+	str = NULL;
+}
+
+void	action(int sig, siginfo_t *info, void *context)
 {
 	static int		count = 0;
 	static int		ascii_char = 0;
 	static char		*str = NULL;
 
+	(void)context;
 	if (!str)
 		str = ft_strdup("");
 	if (sig == SIGUSR1)
 		ascii_char += 0;
 	if (sig == SIGUSR2)
 		ascii_char += two_power(count);
+	kill(info->si_pid, SIGUSR2);
 	count++;
 	if (count == 8)
 	{
 		str = str_record(str, ascii_char);
 		if (ascii_char == 0)
 		{
-			write(1, str, ft_strlen(str));
-			write(1, "\n", 1);
-			free(str);
-			str = NULL;
+			print_message(str);
 		}
 		count = 0;
 		ascii_char = 0;
@@ -87,8 +94,8 @@ int	main(void)
 	write(1, "Server PID: ", 12);
 	write(1, ft_itoa(server_id), ft_strlen(ft_itoa(server_id)));
 	write(1, "\n", 1);
-	sa.sa_handler = sig_handler;
-	sa.sa_flags = 0;
+	sa.sa_sigaction = action;
+	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
