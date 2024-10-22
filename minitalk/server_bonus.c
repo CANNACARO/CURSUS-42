@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:36:02 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/10/17 20:24:01 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/10/19 10:46:34 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	print_message(char *str)
 {
 	write(1, str, ft_strlen(str));
 	write(1, "\n", 1);
-	free(str);
-	str = NULL;
 }
 
 void	action(int sig, siginfo_t *info, void *context)
@@ -79,6 +77,8 @@ void	action(int sig, siginfo_t *info, void *context)
 		if (ascii_char == 0)
 		{
 			print_message(str);
+			free(str);
+			str = NULL;
 		}
 		count = 0;
 		ascii_char = 0;
@@ -87,13 +87,14 @@ void	action(int sig, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	int					server_id;
 	struct sigaction	sa;
+	char				*server_pid;
 
-	server_id = getpid();
+	server_pid = ft_itoa(getpid());
 	write(1, "Server PID: ", 12);
-	write(1, ft_itoa(server_id), ft_strlen(ft_itoa(server_id)));
+	write(1, server_pid, ft_strlen(server_pid));
 	write(1, "\n", 1);
+	free (server_pid);
 	sa.sa_sigaction = action;
 	sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);

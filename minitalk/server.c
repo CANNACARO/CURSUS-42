@@ -6,13 +6,11 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 11:36:02 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/10/13 15:55:16 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/10/19 08:31:05 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <signal.h>
-#include <unistd.h>
+#include "minitalk.h"
 
 int	two_power(int number)
 {
@@ -23,32 +21,43 @@ int	two_power(int number)
 	result = 1;
 	while (pos > 0)
 	{
-		result *=2;
+		result *= 2;
 		pos--;
 	}
 	return (result);
 }
 
-/*void	ft_bzero(void *s, size_t n)
+char	*str_record(char *str, int ascii_char)
 {
-	char	*str;
-	size_t	count;
+	char	*tmp;
+	char	c;
+	int		i;
 
-	str = s;
-	count = 0;
-	while (count < n)
+	c = (char)ascii_char;
+	i = 0;
+	tmp = malloc((ft_strlen(str) + 2) * sizeof(char));
+	if (!tmp)
+		return (NULL);
+	while (str[i])
 	{
-		str[count] = '\0';
-		count++;
+		tmp[i] = str[i];
+		i++;
 	}
-}*/
+	free(str);
+	tmp[i] = c;
+	i++;
+	tmp[i] = '\0';
+	return (tmp);
+}
 
 void	sig_handler(int sig)
 {
-	char c;
-	static int count = 0;
-	static int ascii_char = 0;
-	
+	static int		count = 0;
+	static int		ascii_char = 0;
+	static char		*str = NULL;
+
+	if (!str)
+		str = ft_strdup("");
 	if (sig == SIGUSR1)
 		ascii_char += 0;
 	if (sig == SIGUSR2)
@@ -56,8 +65,14 @@ void	sig_handler(int sig)
 	count++;
 	if (count == 8)
 	{
-		c = (char)ascii_char;
-		write(1, &c, 1);
+		str = str_record(str, ascii_char);
+		if (ascii_char == 0)
+		{
+			write(1, str, ft_strlen(str));
+			write(1, "\n", 1);
+			free(str);
+			str = NULL;
+		}
 		count = 0;
 		ascii_char = 0;
 	}
@@ -65,18 +80,19 @@ void	sig_handler(int sig)
 
 int	main(void)
 {
-	int					server_id;
+	char				*server_pid;
 	struct sigaction	sa;
 
-	server_id = getpid();
-	printf("Server PID: %d\n", server_id);
+	server_pid = ft_itoa(getpid());
+	write(1, "Server PID: ", 12);
+	write(1, server_pid, ft_strlen(server_pid));
+	write(1, "\n", 1);
+	free(server_pid);
+	sa.sa_handler = sig_handler;
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
-	{
-		sa.sa_handler = sig_handler;
-		sa.sa_flags = 0;
-		sigemptyset(&sa.sa_mask);
-		sigaction(SIGUSR1, &sa, NULL);
-		sigaction(SIGUSR2, &sa, NULL);
 		pause();
-	}
 }

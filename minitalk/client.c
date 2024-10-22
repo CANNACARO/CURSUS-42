@@ -6,39 +6,11 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 09:16:31 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2024/10/13 15:28:14 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2024/10/17 20:17:23 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <signal.h>
-#include <unistd.h>
-
-int	ft_atoi(const char *str)
-{
-	int	res;
-	int	sign;
-	int	i;
-
-	res = 0;
-	sign = 1;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign = sign * -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = str[i] - 48 + res * 10;
-		i++;
-	}
-	res = res * sign;
-	return (res);
-}
+#include "minitalk.h"
 
 void	send_signals(int pid, char *str)
 {
@@ -55,7 +27,7 @@ void	send_signals(int pid, char *str)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(500);
+			usleep(50);
 			j++;
 		}
 		i++;
@@ -64,7 +36,7 @@ void	send_signals(int pid, char *str)
 	while (j < 8)
 	{
 		kill(pid, SIGUSR1);
-		usleep(500);
+		usleep(50);
 		j++;
 	}
 }
@@ -82,7 +54,7 @@ int	main(int argc, char *argv[])
 		{
 			if (argv[1][i] < 48 || argv[1][i] > 57)
 			{
-				printf("You must enter a number as a PID\n");
+				write(1, "You must enter a number as a PID\n", 33);
 				return (0);
 			}
 			i++;
@@ -92,6 +64,6 @@ int	main(int argc, char *argv[])
 		send_signals(server_pid, message);
 	}
 	else
-		printf("Wrong number of arguments\n");
+		write(1, "Wrong number of arguments\n", 27);
 	return (0);
 }
