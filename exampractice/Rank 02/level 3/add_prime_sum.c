@@ -38,12 +38,12 @@ void put_nbr(int n)
 }
 
 
-int main(int arg, char *argv[])
+int main(int argc, char *argv[])
 {
-	if (argc != 2 || argv[1][0] = '-' || argv[1][0] == '0')
+	if (argc != 2 || argv[1][0] == '-' || argv[1][0] == '0')
 	{
 		write (1, "0", 1);
-		write (1, "\n", 1));
+		write (1, "\n", 1);
 		return (0);
 	}
 	else
@@ -58,6 +58,6 @@ int main(int arg, char *argv[])
 			i++;
 		}
 		put_nbr(sum);
-		write (, "\n", 1);
+		write (1, "\n", 1);
 	}
 }
