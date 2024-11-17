@@ -4,10 +4,10 @@
 char *fill_word(char *str, int i, int j)
 {
 	int cont = 0;
-	char *word;
+	char *word = malloc(sizeof(char) * (i - j + 1));
 	while (j < i)
 	{
-		str[j] = word[cont];
+		word[cont] = str[j];
 		j++;
 		cont++;
 	}
@@ -33,6 +33,8 @@ char **ft_split(char *str)
 			i++;
 	}
 	words = malloc(sizeof(char *) * (n_words + 1));
+	if (!words)
+		return (NULL);
 	i = 0;
 	while (str[i])
 	{
@@ -43,7 +45,7 @@ char **ft_split(char *str)
 			i++;
 		if (j != i)
 		{
-			words[k] = malloc(sizeof(char) * (i - j + 1));
+			
 			words[k] = fill_word(str, i, j);
 			k++;
 		}
@@ -51,3 +53,16 @@ char **ft_split(char *str)
 	}
 	return (words);
 }
+
+/*int main()
+{
+	char *str = "Hola que tal";
+	char **words = ft_split(str);
+	int i = 0;
+	while (words[i])
+	{
+		printf("%s\n", words[i]);
+		i++;
+	}
+	return (0);
+}*/
