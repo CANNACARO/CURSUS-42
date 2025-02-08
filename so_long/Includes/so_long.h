@@ -24,6 +24,8 @@
 
 # define ERR_ARG "Wrong number of arguments"
 # define ERR_EXT "The extension of the file is not valid"
+# define ERR_EMPTY "The file is empty"
+# define ERR_INCORRECT "The map in not correct"
 
 //RETURN VALUES
 
@@ -31,6 +33,12 @@
 # define FAILURE 1
 # define ERROR -1
 
-
+//STRUCTURES
+typedef struct s_map
+{
+	char **store_map;
+	int height;
+	int width;
+}	t_map;
 
 #endif
