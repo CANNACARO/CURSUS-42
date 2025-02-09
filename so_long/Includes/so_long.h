@@ -26,6 +26,7 @@
 # define ERR_EXT "The extension of the file is not valid"
 # define ERR_EMPTY "The file is empty"
 # define ERR_INCORRECT "The map in not correct"
+# define ERR_CHAR "The character is not valid"
 
 //RETURN VALUES
 
@@ -39,6 +40,15 @@ typedef struct s_map
 	char **store_map;
 	int height;
 	int width;
+	int count_P;
+	int count_E;
+	int count_C;
 }	t_map;
+
+typedef struct s_coord
+{
+	int x;
+	int y;
+}	t_coord;
 
 #endif
