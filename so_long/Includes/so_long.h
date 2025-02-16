@@ -27,6 +27,9 @@
 # define ERR_EMPTY "The file is empty"
 # define ERR_INCORRECT "The map in not correct"
 # define ERR_CHAR "The character is not valid"
+# define ERR_MAP "The map's copy could not be allocated"
+# define ERR_FILE "The file could not be open"
+# define ERR_INT "The int var could not be allocated"
 
 //RETURN VALUES
 
@@ -43,6 +46,7 @@ typedef struct s_map
 	int count_P;
 	int count_E;
 	int count_C;
+	t_coord	P_Pos;
 }	t_map;
 
 typedef struct s_coord

@@ -6,13 +6,13 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:06:41 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/02/09 17:36:03 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/02/16 18:26:12 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./Includes/so_long.h"
 
-// check if the extension is ".ber"
+/*check if the extension is ".ber"*/
 void	check_extension(char *map)
 {
 	if (!(map[ft_strlen(map) - 1] == 'r' && map[ft_strlen(map) - 2] == 'e'
@@ -21,7 +21,7 @@ void	check_extension(char *map)
 		my_exit(ERR_EXT);
 }
 
-// second part of check_shape
+/*second part of check_shape*/
 void	*check_shape_2(int fd, char *line, t_map *game)
 {
 	while (line)
@@ -42,19 +42,23 @@ void	*check_shape_2(int fd, char *line, t_map *game)
 	}
 }
 
-// check if the map is rectangular
+/*check if the map is rectangular*/
 void	*check_shape(char *map, t_map *game)
 {
 	char	*line;
 	int		fd;
 
 	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		ft_free_game(game, ERR_FILE);
 	line = get_next_line(fd);
 	if (!line)
 		ft_free_game(game, ERR_EMPTY);
 	check_shape_2(fd, line, game);
+	close(fd);
 }
 
+/*check that the characters at the map are correct*/
 void	*check_char(t_map *game)
 {
 	t_coord	coord;
@@ -82,7 +86,7 @@ void	*check_char(t_map *game)
 	if (game->count_E != 1 || game->count_P != 1 || game->count_C < 1)
 		ft_free_game(game, ERR_INCORRECT);
 }
-
+/*It checks if the map is surrounded by walls*/
 void	*check_walls(t_map *game)
 {
 	t_coord coord;
