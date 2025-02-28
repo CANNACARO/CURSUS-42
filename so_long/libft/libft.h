@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:38:16 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/02/01 16:18:00 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/02/28 18:13:14 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ void	*my_free(void *ptr);
 
 //FT_PRINTF FUNCTIONS
 
-int	ft_print_char(char c);
-int	ft_print_hexa_lower(unsigned int num);
-int	ft_print_hexa_upper(unsigned int num);
-int	ft_print_int(int num);
-int	ft_print_ptr(void *ptr);
-int	ft_print_string(char *s);
-int	ft_print_unsigint(unsigned int num);
-int	ft_printf(char const *str, ...);
+int		ft_print_char(char c);
+int		ft_print_hexa_lower(unsigned int num);
+int		ft_print_hexa_upper(unsigned int num);
+int		ft_print_int(int num);
+int		ft_print_ptr(void *ptr);
+int		ft_print_string(char *s);
+int		ft_print_unsigint(unsigned int num);
+int		ft_printf(char const *str, ...);
 
 #endif

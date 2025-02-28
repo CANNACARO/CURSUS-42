@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/carillo/Escritorio/CURSUS-42/so_long/Sources",
-      "program": "/home/carillo/Escritorio/CURSUS-42/so_long/Sources/build/Debug/outDebug",
+      "cwd": "/home/carillo/Escritorio/CURSUS-42/so_long/sources",
+      "program": "/home/carillo/Escritorio/CURSUS-42/so_long/sources/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
