@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:02:12 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/02/28 18:14:17 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/03/08 18:24:59 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ t_map	*init_map(t_map *game)
 	game->count_c = 0;
 	game->p_pos.x = -1;
 	game->p_pos.y = -1;
+	game->moves = 0;
+	game->images.background = NULL;
+	game->images.collectible = NULL;
+	game->images.exit = NULL;
+	game->images.player = NULL;
+	game->images.wall = NULL;
+	game->window = NULL;
 	return (game);
 }
 
@@ -57,7 +64,7 @@ void	fill_map(t_map *game, char *map)
 	while (line)
 	{
 		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';//AQUI PUEDE HABER LEAKS
+			line[ft_strlen(line) - 1] = '\0';
 		game->grid[i] = line;
 		i++;
 		line = get_next_line(fd);

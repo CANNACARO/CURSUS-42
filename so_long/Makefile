@@ -6,7 +6,7 @@
 #    By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/22 10:38:06 by jcaro-lo          #+#    #+#              #
-#    Updated: 2025/02/23 12:52:15 by jcaro-lo         ###   ########.fr        #
+#    Updated: 2025/03/08 18:15:56 by jcaro-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ MLX42_DIR = ./MLX42
 SRC_DIR = ./sources
 OBJ_DIR = ./obj
 
-SRC = so_long.c tools.c parse_map.c check_path.c check_map_tools.c
+SRC = so_long.c tools.c parse_map.c check_path.c check_map_tools.c hook.c\
+	render.c
+	
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 INCLUDES = -I$(MLX42_DIR)include -I$(LIBFT_DIR) -I./includes

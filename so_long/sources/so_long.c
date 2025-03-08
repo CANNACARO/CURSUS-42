@@ -28,6 +28,7 @@ int	main(int argc, char *argv[])
 			my_exit("The game could not be allocated");
 		game = init_map(game);
 		game = parse_map(argv[1], game);
+		create_window(game);
 	}
 	return (0);
 }
