@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   images_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 19:38:35 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/03/11 18:12:26 by jcaro-lo         ###   ########.fr       */
+/*   Created: 2025/03/11 19:34:54 by jcaro-lo          #+#    #+#             */
+/*   Updated: 2025/03/11 19:46:28 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 /*It converts textures to images*/
 mlx_image_t	*texture_to_image(t_map *game, const char *path)
@@ -46,49 +46,27 @@ void	load_images(t_map *game)
 	game->images.wall = texture_to_image(game, "./images/Wall_asteroid.png");
 	if (!game->images.wall)
 		ft_free_game(game, ERR_IMAGE);
-	game->images.player = texture_to_image(game, "./images/Player_up.png");
-	if (!game->images.player)
+}
+
+/*Second part of load_images*/
+void	load_images_2(t_map *game)
+{
+	game->images.player_up = texture_to_image(game, "./images/Player_up.png");
+	if (!game->images.player_up)
 		ft_free_game(game, ERR_IMAGE);
-}
-
-/*It draws the whole initial map*/
-void	render_window(t_map *game)
-{
-	t_coord	c;
-
-	c.y = -1;
-	while (game->grid[++c.y])
-	{
-		c.x = -1;
-		while (game->grid[c.y][++c.x])
-		{
-			mlx_image_to_window(game->window, game->images.background,
-				c.x * 64, c.y * 64);
-			if (game->grid[c.y][c.x] == 'P')
-				mlx_image_to_window(game->window, game->images.player,
-					c.x * 64, c.y * 64);
-			if (game->grid[c.y][c.x] == 'E')
-				mlx_image_to_window(game->window, game->images.exit,
-					c.x * 64, c.y * 64);
-			if (game->grid[c.y][c.x] == 'C')
-				mlx_image_to_window(game->window, game->images.collectible,
-					c.x * 64, c.y * 64);
-			if (game->grid[c.y][c.x] == '1')
-				mlx_image_to_window(game->window, game->images.wall,
-					c.x * 64, c.y * 64);
-		}
-	}
-}
-
-/*It involves everything about the window
-	(initiate it, rendering, key hook...))*/
-void	create_window(t_map *game)
-{
-	game->window = mlx_init(game->width * 64, game->height * 64, TITLE, true);
-	if (!game->window)
-		ft_free_game(game, ERR_WINDOW);
-	load_images(game);
-	render_window(game);
-	mlx_key_hook(game->window, key_hook, game);
-	mlx_loop(game->window);
+	game->images.player_down = texture_to_image(game,
+			"./images/Player_down.png");
+	if (!game->images.player_down)
+		ft_free_game(game, ERR_IMAGE);
+	game->images.player_left = texture_to_image(game,
+			"./images/Player_left.png");
+	if (!game->images.player_left)
+		ft_free_game(game, ERR_IMAGE);
+	game->images.player_right = texture_to_image(game,
+			"./images/Player_right.png");
+	if (!game->images.player_right)
+		ft_free_game(game, ERR_IMAGE);
+	game->images.oponent = texture_to_image(game, "./images/Enemy_alien.png");
+	if (!game->images.oponent)
+		ft_free_game(game, ERR_IMAGE);
 }
