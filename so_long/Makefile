@@ -6,7 +6,7 @@
 #    By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/22 10:38:06 by jcaro-lo          #+#    #+#              #
-#    Updated: 2025/03/14 19:04:37 by jcaro-lo         ###   ########.fr        #
+#    Updated: 2025/03/29 10:36:43 by jcaro-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ $(MLX42_DIR)/build/libmlx42.a:
 	cmake --build $(MLX42_DIR)/build -j4
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(RM) $(OBJ_DIR)
 	$(RM) $(OBJ_BONUS_DIR)
 	$(RM) $(MLX42_DIR)/build
