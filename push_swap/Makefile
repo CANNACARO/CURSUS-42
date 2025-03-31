@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile 2                                         :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/29 10:12:07 by jcaro-lo          #+#    #+#              #
-#    Updated: 2025/03/29 10:12:11 by jcaro-lo         ###   ########.fr        #
+#    Updated: 2025/03/30 16:24:23 by jcaro-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC_DIR = ./sources
 OBJ_DIR = ./obj
 #OBJ_BONUS_DIR = ./obj_bonus
 
-SRC = 
+SRC = free_program.c init.c push_swap.c
 
 #SRC_BONUS = 
 
@@ -55,7 +55,7 @@ $(LIBFT_DIR)/libft.a:
 	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(RM) $(OBJ_DIR)
 #	$(RM) $(OBJ_BONUS_DIR)
 

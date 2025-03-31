@@ -6,7 +6,7 @@
 #    By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/11 20:40:10 by jcaro-lo          #+#    #+#              #
-#    Updated: 2025/02/01 16:24:25 by jcaro-lo         ###   ########.fr        #
+#    Updated: 2025/03/31 19:18:31 by jcaro-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,10 @@ SRC += get_next_line_bonus.c get_next_line_utils_bonus.c
 
 SRC += ft_print_char.c ft_print_hexa_lower.c ft_print_hexa_upper.c ft_print_int.c\
 	ft_print_ptr.c ft_print_string.c ft_print_unsigint.c ft_printf.c
+
+#NEW ADDITIONS
+
+SRC += ft_is_space.c ft_del_pointer.c
 
 OBJS = $(SRC:.c=.o)
 

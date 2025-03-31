@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:38:16 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/02/28 18:13:14 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/03/31 19:17:27 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,10 @@ int		ft_print_ptr(void *ptr);
 int		ft_print_string(char *s);
 int		ft_print_unsigint(unsigned int num);
 int		ft_printf(char const *str, ...);
+
+//NEW ADDITTIONS
+
+int		ft_is_space(char c);
+void	del_pointer(void *content);
 
 #endif
