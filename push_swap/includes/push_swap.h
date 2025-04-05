@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 10:13:25 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/03 19:02:21 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/05 16:49:33 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,31 @@ int		ft_strtol(t_stacks *stacks, t_strtol *support, char *str);
 /*It creates a node and fill it with vaulues*/
 t_list	*fill_node(t_stacks *stacks, int value);
 /*It converts the arguments into a linked list*/
-void	parse_data(t_stacks *stacks, char *str[]);
+t_stacks	*parse_data(t_stacks *stacks, char *str[]);
 
 //tools
 
 /*It cheks if the number is repeated and add the node into the linked list*/
 void	ft_check_and_add_node(t_stacks *stacks, t_list *new, int num);
+
+//INSTRUCTIONS
+
+void	sa(t_stacks *stacks);
+void	sb(t_stacks *stacks);
+void	ss(t_stacks *stacks);
+void	pa(t_stacks *stacks);
+void	pb(t_stacks *stacks);
+
+//INSTRUCTIONS 2
+
+void	ra(t_stacks *stacks);
+void	rb(t_stacks *stacks);
+void	rr(t_stacks *stacks);
+
+//INSTRUCTIONS 3
+
+void	rra(t_stacks *stacks);
+void	rrb(t_stacks *stacks);
+void	rrr(t_stacks *stacks);
 
 #endif
