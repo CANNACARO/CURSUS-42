@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 10:13:25 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/05 16:49:33 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/07 20:31:38 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,52 +40,93 @@ typedef struct s_strtol
 	long	res;
 }	t_strtol;
 
-//free_program
+/*It store values to manage positions and sort values*/
+typedef struct s_sort
+{
+	int		curr_pos;
+	int		min_pos;
+	int		to_end;
+	int		min_value;
+	t_list	*lst;
+}	t_sort;
 
-/*it frees the struct t_strtol*/
-void	free_structs(t_stacks *stacks, t_strtol *support);
-/*It frees the struct that store both stacks*/
-void	free_stack(t_stacks *stacks);
+//FREE PROGRAM
 
-//init
+/*it frees the struct t_strtol and send an error message*/
+void		free_structs(t_stacks *stacks, t_strtol *support);
+/*It frees the struct that store both stacks and send an error message*/
+void		free_stack(t_stacks *stacks);
+/*It frees the struct that store both stacks before to end the program*/
+void		end_program(t_stacks *stacks);
+
+//INIT
 
 /*It initiates the struct t_sstrtol*/
-void	init_support_strtol(t_strtol *support);
+void		init_support_strtol(t_strtol *support);
 /*It initiates the struct t_stacks*/
-void	init_stacks(t_stacks *stacks);
+void		init_stacks(t_stacks *stacks);
 
-//push swap
+//PUSH SWAP
 
 /*It converts a string into integers*/
-int		ft_strtol(t_stacks *stacks, t_strtol *support, char *str);
+int			ft_strtol(t_stacks *stacks, t_strtol *support, char *str);
 /*It creates a node and fill it with vaulues*/
-t_list	*fill_node(t_stacks *stacks, int value);
+t_list		*fill_node(t_stacks *stacks, int value);
 /*It converts the arguments into a linked list*/
 t_stacks	*parse_data(t_stacks *stacks, char *str[]);
 
-//tools
+//TOOLS
 
 /*It cheks if the number is repeated and add the node into the linked list*/
-void	ft_check_and_add_node(t_stacks *stacks, t_list *new, int num);
+void		ft_check_and_add_node(t_stacks *stacks, t_list *new, int num);
+void		check_sort(t_stacks *stacks);
+void		print_istruction(t_stacks *stacks,
+				void (*f)(t_stacks *), char *instr);
 
 //INSTRUCTIONS
 
-void	sa(t_stacks *stacks);
-void	sb(t_stacks *stacks);
-void	ss(t_stacks *stacks);
-void	pa(t_stacks *stacks);
-void	pb(t_stacks *stacks);
+/*It changes the position of the first two elements of stack a*/
+void		sa(t_stacks *stacks);
+/*It changes the position of the first two elements of stack b*/
+void		sb(t_stacks *stacks);
+/*sa and sb*/
+void		ss(t_stacks *stacks);
+/*It moves the fitst element of stack b to the first element of stack a*/
+void		pa(t_stacks *stacks);
+/*It moves the fitst element of stack a to the first element of stack b*/
+void		pb(t_stacks *stacks);
 
 //INSTRUCTIONS 2
 
-void	ra(t_stacks *stacks);
-void	rb(t_stacks *stacks);
-void	rr(t_stacks *stacks);
+/*It moves one position up all the elements of stack a,
+ sending the first to the last position*/
+void		ra(t_stacks *stacks);
+/*It moves one position up all the elements of stack b,
+ sending the first to the last position*/
+void		rb(t_stacks *stacks);
+/*ra and rb*/
+void		rr(t_stacks *stacks);
 
 //INSTRUCTIONS 3
 
-void	rra(t_stacks *stacks);
-void	rrb(t_stacks *stacks);
-void	rrr(t_stacks *stacks);
+/*It moves one position down all the elements of stack a,
+ sending the last to the first position*/
+void		rra(t_stacks *stacks);
+/*It moves one position down all the elements of stack a,
+ sending the last to the first position*/
+void		rrb(t_stacks *stacks);
+/*rra and rrb*/
+void		rrr(t_stacks *stacks);
+
+//SORT LIST
+
+/*It sorts a given list of numbers*/
+void		sort_list(t_stacks *stacks);
+/*It sorts a list with three numbers*/
+void		sort_three(t_stacks *stacks);
+/*It pass two elemnts from stack a to stack b*/
+void		divide_four_five(t_stacks *stacks, t_sort s_values);
+/*It sorts a list with four or five numbers*/
+void		sort_four_five(t_stacks *stacks);
 
 #endif

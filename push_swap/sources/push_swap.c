@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 11:05:11 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/05 16:54:18 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:43:12 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,26 +96,9 @@ int	main(int argc, char *argv[])
 		exit(1);
 	init_stacks(stacks);
 	stacks = parse_data(stacks, argv);
+	check_sort(stacks);
+	sort_list(stacks);
 	/*desde aqui son pruebas*/
-	t_list *lst1, *lst2, *lst3;
-	lst1= malloc(sizeof(t_list));
-	lst2= malloc(sizeof(t_list));
-	lst3= malloc(sizeof(t_list));
-	
-	int x1;
-	int x2;
-	int x3;
-	x1 = 10;
-	x2 = 5;
-	x3 = 2;
-	stacks->sb =lst1;
-	stacks->sb->content= &(x1);
-	stacks->sb->next = lst2;
-	stacks->sb->next->content= &(x2);
-	stacks->sb->next->next=lst3;
-	stacks->sb->next->next->content=&(x3);
-	stacks->sb->next->next->next = NULL;
-	rrr(stacks);
 	t_list *node;
 	node = stacks->sa;
 	while(node != NULL)
@@ -123,6 +106,6 @@ int	main(int argc, char *argv[])
 		ft_printf("%d\n", *((int*)node->content));
 		node = node->next;
 	}
-	//free_stack(stacks);
+	end_program(stacks);
 	return(0);
 }

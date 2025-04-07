@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 20:07:50 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/05 10:47:36 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/06 12:09:52 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	sa(t_stacks *stacks)
 {
-	t_list *aux1;
-	t_list *aux2;
+	t_list	*aux1;
+	t_list	*aux2;
 
 	if (!stacks->sa || !stacks->sa->next)
 		return ;
@@ -28,8 +28,8 @@ void	sa(t_stacks *stacks)
 
 void	sb(t_stacks *stacks)
 {
-	t_list *aux1;
-	t_list *aux2;
+	t_list	*aux1;
+	t_list	*aux2;
 
 	if (!stacks->sb || !stacks->sb->next)
 		return ;
@@ -46,9 +46,9 @@ void	ss(t_stacks *stacks)
 	sb(stacks);
 }
 
-void pa(t_stacks *stacks)
+void	pa(t_stacks *stacks)
 {
-	t_list *aux;
+	t_list	*aux;
 
 	if (!stacks->sb)
 		return ;
@@ -56,11 +56,13 @@ void pa(t_stacks *stacks)
 	stacks->sb = stacks->sb->next;
 	aux->next = stacks->sa;
 	stacks->sa = aux;
+	stacks->size_sa++;
+	stacks->size_sb--;
 }
 
-void pb(t_stacks *stacks)
+void	pb(t_stacks *stacks)
 {
-	t_list *aux;
+	t_list	*aux;
 
 	if (!stacks->sa)
 		return ;
@@ -68,4 +70,6 @@ void pb(t_stacks *stacks)
 	stacks->sa = stacks->sa->next;
 	aux->next = stacks->sb;
 	stacks->sb = aux;
+	stacks->size_sa--;
+	stacks->size_sb++;
 }
