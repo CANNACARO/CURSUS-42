@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:14:09 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/02/01 15:59:45 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/12 18:47:26 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,25 @@ char	*fillstack(char *buf, int fd, char *stack)
 
 char	*get_next_line(int fd)
 {
+	char	**stack;
+	char	*line;
+	char	*buf;
+
+	stack = get_gnl_stack();
+	if (BUFFER_SIZE <= 0 || fd < 0)
+		return (my_free(stack[fd]));
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (NULL);
+	ft_bzero(buf, BUFFER_SIZE + 1);
+	stack[fd] = fillstack(buf, fd, stack[fd]);
+	line = extractline(stack[fd]);
+	stack[fd] = updatestack(stack[fd]);
+	return (line);
+}
+
+/*char	*get_next_line(int fd)
+{
 	static char	*stack[4096] = {NULL};
 	char		*line;
 	char		*buf;
@@ -113,7 +132,7 @@ char	*get_next_line(int fd)
 	line = extractline(stack[fd]);
 	stack[fd] = updatestack(stack[fd]);
 	return (line);
-}
+}*/
 
 /*int	main(void)
 {

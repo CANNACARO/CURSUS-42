@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:38:16 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/02/28 18:13:14 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/12 18:36:04 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ size_t	ft_strlen_gnl(const char *s);
 char	*ft_strchr_gnl(const char *s, int c);
 void	ft_bzero(void *s, size_t n);
 void	*my_free(void *ptr);
+char	**get_gnl_stack(void);
+void	clear_gnl_stack(void);
 
 //FT_PRINTF FUNCTIONS
 

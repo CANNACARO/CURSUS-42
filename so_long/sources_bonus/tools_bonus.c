@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:04:01 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/03/14 20:15:26 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/12 18:42:14 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*It print an error message and ends the execution of the program*/
 void	my_exit(char *err)
 {
-	perror(err);
+	ft_printf("%s", err);
 	exit(FAILURE);
 }
 
@@ -69,6 +69,7 @@ void	ft_free_game(t_map *game, char *err)
 	if (game->grid)
 		ft_free_matrix(game->grid);
 	free(game);
+	clear_gnl_stack();
 	my_exit(err);
 }
 

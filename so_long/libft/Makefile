@@ -6,7 +6,7 @@
 #    By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/11 20:40:10 by jcaro-lo          #+#    #+#              #
-#    Updated: 2025/02/01 16:24:25 by jcaro-lo         ###   ########.fr        #
+#    Updated: 2025/04/12 18:40:24 by jcaro-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC += ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_b
 
 #GET NEXT LINE FILES
 
-SRC += get_next_line_bonus.c get_next_line_utils_bonus.c
+SRC += get_next_line_bonus.c get_next_line_utils_bonus.c get_next_line_utils2_bonus.c
 
 #PRINTF FILES
 
