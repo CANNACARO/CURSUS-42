@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 11:57:31 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/07 20:23:45 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/13 17:25:22 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,26 @@ void	sort_four_five(t_stacks *stacks)
 	print_istruction(stacks, pa, "pa\n");
 }
 
+void	sort_long(t_stacks *stacks)
+{
+	t_lis	*lis_values;
+	
+	lis_values = malloc(sizeof(t_lis));
+	if (!lis_values)
+		free_stack(stacks);
+	init_lis(lis_values);
+	find_lis(stacks, lis_values);
+
+	/*Aqui tengo que liberar lis_values al final*/
+}
+
 void	sort_list(t_stacks *stacks)
 {
 	if (stacks->size_sa == 2)
 		print_istruction(stacks, sa, "sa\n");
-	if (stacks->size_sa == 3)
+	else if (stacks->size_sa == 3)
 		sort_three(stacks);
-	if (stacks->size_sa > 3 && stacks->size_sa <= 5)
+	else if (stacks->size_sa > 3 && stacks->size_sa <= 5)
 		sort_four_five(stacks);
+	
 }

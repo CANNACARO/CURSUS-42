@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:04:37 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/07 20:25:57 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/13 16:36:03 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,32 @@ void	print_istruction(t_stacks *stacks, void (*f)(t_stacks *), char *instr)
 {
 	f (stacks);
 	ft_printf("%s", instr);
+}
+
+t_list	*copy_list(t_stacks *stacks, t_list *lst)
+{
+	t_list	*curr_orig;
+	t_list	*copy;
+	t_list	*new_node;
+	/*Aqui tal vez de veria comprobar if (!lst)*/
+	copy = malloc(sizeof(t_list));
+	if (!copy)
+		free_stack(stacks);
+	copy->content = lst->content;
+	copy->next = NULL;
+	curr_orig = lst->next;
+	while (curr_orig != NULL)
+	{
+		new_node = malloc(sizeof(t_list));
+		if (!new_node)
+		{
+			ft_lstclear(&copy, NULL);
+			free_stack(stacks);
+		}
+		new_node->content = curr_orig->content;
+		new_node->next = NULL;
+		ft_lstadd_back(&copy, new_node);
+		curr_orig = curr_orig->next;
+	}
+	return (copy);
 }

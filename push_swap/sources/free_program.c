@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:55:58 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/07 19:36:40 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/13 16:34:44 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,24 @@ void	free_stack(t_stacks *stacks)
 	free(stacks);
 	ft_printf("Error\n");
 	exit(1);
+}
+
+void	free_lis_error(t_lis *lis_values, t_stacks *stacks)
+{
+	free_lis(lis_values);
+	free_stack(stacks);
+}
+
+void	free_lis(t_lis *lis_values)
+{
+	if (lis_values->len)
+		free (lis_values->len);
+	if (lis_values->pos)
+		free (lis_values->pos);
+	if (lis_values->lis)
+		free (lis_values->lis);
+	ft_lstclear(&lis_values->a_copy,NULL);
+	free(lis_values);
 }
 
 void	end_program(t_stacks *stacks)

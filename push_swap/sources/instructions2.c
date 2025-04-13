@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:13:05 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/06 10:03:17 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/13 17:51:28 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,5 @@ void	rr(t_stacks *stacks)
 	ra(stacks);
 	rb(stacks);
 }
+
+

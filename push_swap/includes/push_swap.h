@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 10:13:25 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/07 20:31:38 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/13 17:57:15 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,22 @@ typedef struct s_sort
 	t_list	*lst;
 }	t_sort;
 
+/*Structure that store information to support
+the search of lis (longest increasing subsequence)*/
+typedef struct s_lis
+{
+	int		*len;
+	int		*pos;
+	int		*lis;
+	int		count;
+	int		min_iter;
+	int		max_iter;
+	int		min_value;
+	t_list	*a_copy;
+	t_list	*aux;
+	t_list	*aux2;
+}	t_lis;
+
 //FREE PROGRAM
 
 /*it frees the struct t_strtol and send an error message*/
@@ -58,6 +74,7 @@ void		free_structs(t_stacks *stacks, t_strtol *support);
 void		free_stack(t_stacks *stacks);
 /*It frees the struct that store both stacks before to end the program*/
 void		end_program(t_stacks *stacks);
+void		free_lis(t_lis lis_values);
 
 //INIT
 
@@ -65,6 +82,7 @@ void		end_program(t_stacks *stacks);
 void		init_support_strtol(t_strtol *support);
 /*It initiates the struct t_stacks*/
 void		init_stacks(t_stacks *stacks);
+void		init_lis(t_lis *l_val);
 
 //PUSH SWAP
 
@@ -82,6 +100,7 @@ void		ft_check_and_add_node(t_stacks *stacks, t_list *new, int num);
 void		check_sort(t_stacks *stacks);
 void		print_istruction(t_stacks *stacks,
 				void (*f)(t_stacks *), char *instr);
+t_list		*copy_list(t_stacks *stacks, t_list *lst);
 
 //INSTRUCTIONS
 
@@ -107,6 +126,7 @@ void		rb(t_stacks *stacks);
 /*ra and rb*/
 void		rr(t_stacks *stacks);
 
+
 //INSTRUCTIONS 3
 
 /*It moves one position down all the elements of stack a,
@@ -128,5 +148,9 @@ void		sort_three(t_stacks *stacks);
 void		divide_four_five(t_stacks *stacks, t_sort s_values);
 /*It sorts a list with four or five numbers*/
 void		sort_four_five(t_stacks *stacks);
+
+//LIS
+
+
 
 #endif
