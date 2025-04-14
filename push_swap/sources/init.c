@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:54:11 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/13 17:58:07 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/14 20:26:40 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,9 @@ void	init_lis(t_lis *l_val)
 	l_val->min_value = 0;
 	l_val->min_iter = 0;
 	l_val->max_iter = 1;
+	l_val->lis_len = 0;
+	l_val->max_pos = 0;
 	l_val->a_copy = NULL;
-	l_val->a_copy->content = NULL;
-	l_val->a_copy->next = NULL;
 	l_val->aux = NULL;
-	l_val->aux->content = NULL;
-	l_val->aux->next = NULL;
 	l_val->aux2 = NULL;
-	l_val->aux2->content = NULL;
-	l_val->aux2->next = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 11:05:11 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/07 19:43:12 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/14 19:15:27 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ int	main(int argc, char *argv[])
 	check_sort(stacks);
 	sort_list(stacks);
 	/*desde aqui son pruebas*/
-	t_list *node;
+	/*t_list *node;
 	node = stacks->sa;
 	while(node != NULL)
 	{
 		ft_printf("%d\n", *((int*)node->content));
 		node = node->next;
-	}
+	}*/
 	end_program(stacks);
 	return(0);
 }

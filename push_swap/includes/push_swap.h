@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 10:13:25 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/13 17:57:15 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/14 20:26:14 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_lis
 	int		min_iter;
 	int		max_iter;
 	int		min_value;
+	int		lis_len;
+	int		max_pos;
 	t_list	*a_copy;
 	t_list	*aux;
 	t_list	*aux2;
@@ -74,7 +76,8 @@ void		free_structs(t_stacks *stacks, t_strtol *support);
 void		free_stack(t_stacks *stacks);
 /*It frees the struct that store both stacks before to end the program*/
 void		end_program(t_stacks *stacks);
-void		free_lis(t_lis lis_values);
+void		free_lis_error(t_lis *lis_values, t_stacks *stacks);
+void		free_lis(t_lis *lis_values);
 
 //INIT
 
@@ -151,6 +154,9 @@ void		sort_four_five(t_stacks *stacks);
 
 //LIS
 
+void		find_lis(t_stacks *stacks, t_lis *lis_values);
+void		rot_lis(t_lis *l_val);
+void		find_min(t_lis *l_val);
 
 
 #endif
