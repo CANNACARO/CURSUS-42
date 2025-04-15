@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 11:57:31 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/14 18:51:40 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/15 20:16:28 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ void	sort_long(t_stacks *stacks)
 		free_stack(stacks);
 	init_lis(lis_values);
 	find_lis(stacks, lis_values);
-	t_list *node;
+	/*t_list *node;
 	node = lis_values->a_copy;
 	while(node != NULL)
 	{
 		ft_printf("%d\n", *((int*)node->content));
 		node = node->next;
-	}
+	}*/
 
 	/*Aqui tengo que liberar lis_values al final*/
 }

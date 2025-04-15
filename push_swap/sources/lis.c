@@ -6,42 +6,16 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 16:37:18 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/14 20:52:07 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/15 20:44:03 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*It stores the position of the numbers contained in the LIS in array *lis*/
-void	store_lis_pos(t_stacks *stacks,t_lis *l_val)
-{
-	l_val->min_iter = -1;
-	while (++l_val->min_iter <= l_val->max_iter)
-	{
-		if (l_val->len[l_val->min_iter] > l_val->lis_len)
-		{
-			l_val->lis_len = l_val->len[l_val->min_iter];
-			l_val->max_pos = l_val->min_iter;
-		}
-	}
-	l_val->lis = malloc(sizeof(int)* l_val->lis_len);
-	if(!l_val->lis)
-		free_lis_error(stacks, l_val);
-	l_val->lis_len--;
-	while (l_val->lis_len >= 0)
-	{
-		l_val->lis[l_val->lis_len] = l_val->max_pos;
-		l_val->max_pos = l_val->pos[l_val->max_pos];
-		l_val->lis_len--;
-	}
-}
-
-
-/*It has the algorithm to find the lis*/
 void	find_lis_algorithm(t_lis *lis_values)
 {
 	lis_values->aux2 = lis_values->a_copy->next;
-	while (lis_values->aux2->next != NULL)
+	while (lis_values->aux2 != NULL)
 	{
 		lis_values->aux = lis_values->a_copy;
 		lis_values->min_iter = 0;
@@ -60,7 +34,6 @@ void	find_lis_algorithm(t_lis *lis_values)
 	}
 }
 
-/*It finds the min value on the copy of the stack a*/
 void	find_min(t_lis *l_val)
 {
 	l_val->aux = l_val->a_copy;
@@ -73,7 +46,6 @@ void	find_min(t_lis *l_val)
 	}
 }
 
-/*It rotates the copy of the stack a till the min value is on top*/
 void	rot_lis(t_lis *l_val)
 {
 	t_list	*aux;
@@ -91,7 +63,6 @@ void	rot_lis(t_lis *l_val)
 	}
 }
 
-/*Starts findind longest increasing subsequence (it mostly initiates values)*/
 void	find_lis(t_stacks *stacks, t_lis *lis_values)
 {
 	lis_values->a_copy = copy_list(stacks, stacks->sa);
@@ -114,10 +85,15 @@ void	find_lis(t_stacks *stacks, t_lis *lis_values)
 	}
 	find_min(lis_values);
 	rot_lis(lis_values);
-	/*Hasta aquí esta bien*/
 	find_lis_algorithm(lis_values);
 	store_lis_pos(stacks, lis_values);
-	/*Ahora tendria que iterar sobre la lista a_copy y guardar los numeros que forman
-	 el lis pisando los valores de las posiciones por los valores de los numeros
-	 que hay en la lista en esas posiciones*/
+	store_lis(lis_values);
+	/*Aquí tengo que mandar de vuelta los números que no esten en el LIS*/
+	int i = 0;
+	int j = lis_values->lis_len;
+	while (i < j)
+	{
+		ft_printf("%d\n", lis_values->lis[i]);
+		i++;
+	}
 }

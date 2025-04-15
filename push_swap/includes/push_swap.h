@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 10:13:25 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/14 20:26:14 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/15 20:42:13 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,9 +154,20 @@ void		sort_four_five(t_stacks *stacks);
 
 //LIS
 
+/*Starts findind longest increasing subsequence (it mostly initiates values)*/
 void		find_lis(t_stacks *stacks, t_lis *lis_values);
+/*It rotates the copy of the stack a till the min value is on top*/
 void		rot_lis(t_lis *l_val);
+/*It finds the min value on the copy of the stack a*/
 void		find_min(t_lis *l_val);
+/*It has the algorithm to find the lis*/
+void		find_lis_algorithm(t_lis *lis_values);
 
+//STORE LIS
+
+/*It stores the position of the numbers contained in the LIS*/
+void		store_lis_pos(t_stacks *stacks, t_lis *l_val);
+/*It stores the numbers of the LIS*/
+void		store_lis(t_lis *l_val);
 
 #endif

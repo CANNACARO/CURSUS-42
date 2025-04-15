@@ -6,7 +6,7 @@
 #    By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/29 10:12:07 by jcaro-lo          #+#    #+#              #
-#    Updated: 2025/04/13 16:38:04 by jcaro-lo         ###   ########.fr        #
+#    Updated: 2025/04/15 20:42:38 by jcaro-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJ_DIR = ./obj
 #OBJ_BONUS_DIR = ./obj_bonus
 
 SRC = free_program.c init.c push_swap.c tools.c instructions.c\
-	instructions2.c instructions3.c sort_list.c lis.c
+	instructions2.c instructions3.c sort_list.c lis.c store_lis.c
 
 #SRC_BONUS = 
 
