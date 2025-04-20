@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 11:05:11 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/14 19:15:27 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/20 09:17:52 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_stacks	*parse_data(t_stacks *stacks, char *str[])
 				support_strtol->j++;
 			num = ft_strtol(stacks, support_strtol, str[support_strtol->i]);
 			lst = fill_node(stacks, num);
-			ft_check_and_add_node(stacks, lst, num);
+			ft_check_and_add_node(stacks, lst, num, support_strtol);
 			if (str[support_strtol->i][support_strtol->j])
 				support_strtol->j++;
 		}
@@ -98,14 +98,4 @@ int	main(int argc, char *argv[])
 	stacks = parse_data(stacks, argv);
 	check_sort(stacks);
 	sort_list(stacks);
-	/*desde aqui son pruebas*/
-	/*t_list *node;
-	node = stacks->sa;
-	while(node != NULL)
-	{
-		ft_printf("%d\n", *((int*)node->content));
-		node = node->next;
-	}*/
-	end_program(stacks);
-	return(0);
 }

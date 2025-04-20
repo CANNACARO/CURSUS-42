@@ -6,7 +6,7 @@
 #    By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/11 20:40:10 by jcaro-lo          #+#    #+#              #
-#    Updated: 2025/03/31 19:18:31 by jcaro-lo         ###   ########.fr        #
+#    Updated: 2025/04/19 10:57:53 by jcaro-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC += ft_print_char.c ft_print_hexa_lower.c ft_print_hexa_upper.c ft_print_int.
 
 #NEW ADDITIONS
 
-SRC += ft_is_space.c ft_del_pointer.c
+SRC += ft_is_space.c ft_del_pointer.c ft_lstreverse.c ft_abs.c
 
 OBJS = $(SRC:.c=.o)
 

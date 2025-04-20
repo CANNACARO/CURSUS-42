@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:55:58 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/13 16:34:44 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/18 11:02:14 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,17 @@ void	free_lis(t_lis *lis_values)
 		free (lis_values->pos);
 	if (lis_values->lis)
 		free (lis_values->lis);
-	ft_lstclear(&lis_values->a_copy,NULL);
+	if (lis_values->a_copy)
+		ft_lstclear(&lis_values->a_copy, NULL);
 	free(lis_values);
 }
 
-void	end_program(t_stacks *stacks)
+void	end_short(t_stacks *stacks)
 {
 	if (stacks->sa)
 		ft_lstclear(&stacks->sa, del_pointer);
 	if (stacks->sb)
 		ft_lstclear(&stacks->sb, del_pointer);
 	free(stacks);
-	exit(1);
+	exit(0);
 }

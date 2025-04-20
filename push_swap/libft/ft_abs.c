@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 18:03:03 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/17 15:52:18 by jcaro-lo         ###   ########.fr       */
+/*   Created: 2025/04/19 10:51:43 by jcaro-lo          #+#    #+#             */
+/*   Updated: 2025/04/19 10:57:24 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_abs(int n)
 {
-	if (lst == NULL)
-		return (NULL);
-	while (lst -> next != NULL)
-	{
-		lst = lst -> next;
-	}
-	return (lst);
+	if (n < 0)
+		n = n * -1;
+	return (n);
 }
+
+/*int main()
+{
+	int	x;
+
+	x = ft_abs(-65);
+	printf("%d", x);
+}*/

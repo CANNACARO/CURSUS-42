@@ -6,7 +6,7 @@
 #    By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/29 10:12:07 by jcaro-lo          #+#    #+#              #
-#    Updated: 2025/04/15 20:42:38 by jcaro-lo         ###   ########.fr        #
+#    Updated: 2025/04/20 13:27:47 by jcaro-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ OBJ_DIR = ./obj
 #OBJ_BONUS_DIR = ./obj_bonus
 
 SRC = free_program.c init.c push_swap.c tools.c instructions.c\
-	instructions2.c instructions3.c sort_list.c lis.c store_lis.c
+	instructions2.c instructions3.c sort_list.c lis.c store_lis.c\
+	sort_long_tools.c free_program2.c sort_long_tools2.c\
+	sort_long_tools3.c
 
 #SRC_BONUS = 
 
@@ -52,7 +54,7 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 #	mkdir -p $(OBJ_BONUS_DIR)
 #	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 	
-$(LIBFT_DIR)/libft.a:
+$(LIBFT_DIR)/libft.a: $(wildcard $(LIBFT_DIR)/*.c) $(wildcard $(LIBFT_DIR)/*.h)
 	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
