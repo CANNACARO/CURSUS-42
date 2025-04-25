@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 10:13:25 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/20 16:41:00 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/22 21:31:19 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_place
 	int		max_iter_b;
 	int		cnt_a;
 	int		cnt_b;
+	int		aux;
 	t_list	*iter_sa;
 	t_list	*iter_sb;
 	t_list	*iter_rev_sa;

@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 13:47:00 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/20 20:14:44 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:37:16 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,20 @@ void	find_max_pos(t_stacks *stacks, t_stacks *rev_stacks, t_place *place)
 	place->iter_rev_sa = rev_stacks->sa;
 	place->max_val_right = *((int *)place->iter_sa->content);
 	place->max_pos_right = 1;
+	place->aux = 2;
 	while (i < stacks->size_sa / 2)
 	{
 		if (*((int *)place->iter_sa->next->content)
-			> place->max_val_right)
+		> place->max_val_right)
 		{
-			place->max_pos_right++;
 			place->max_val_right = *((int *)place->iter_sa->next->content);
+			place->max_pos_right = place->aux;
 		}
+		place->aux++;
 		place->iter_sa = place->iter_sa->next;
 		i++;
 	}
 	find_max_pos2(stacks, place);
-	if (place->max_val_right > place->max_val_rev)
-		place->max_pos = place->max_pos_right;
-	else
-		place->max_pos = place->max_pos_rev;
 }
 
 void	find_max_pos2(t_stacks *stacks, t_place *place)
@@ -44,19 +42,32 @@ void	find_max_pos2(t_stacks *stacks, t_place *place)
 	int	i;
 
 	i = 0;
-	place->max_pos_rev = 0;
 	place->max_val_rev = *((int *)place->iter_rev_sa->content);
+	place->max_pos_rev = 0;
+	place->aux = -1;
 	while (i < stacks->size_sa / 2)
 	{
 		if (*((int *)place->iter_rev_sa->next->content)
 			> place->max_val_rev)
 		{
-			place->max_pos_rev--;
 			place->max_val_rev = *((int *)place->iter_rev_sa->next->content);
-		}
+			place->max_pos_rev = place->aux;
+		}	
+		place->aux--;
 		place->iter_rev_sa = place->iter_rev_sa->next;
 		i++;
 	}
+	if (place->max_val_right == place->max_val_rev)
+	{
+		if (place->max_pos_right <= place->max_pos_rev)
+			place->max_pos = place->max_pos_right;
+		else
+			place->max_pos = place->max_pos_rev;
+	}
+	if (place->max_val_right > place->max_val_rev)
+		place->max_pos = place->max_pos_right;
+	else
+		place->max_pos = place->max_pos_rev;
 }
 
 void	update_moves(t_place *place)

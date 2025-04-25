@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 11:10:49 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/20 18:30:09 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:35:27 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,15 +119,16 @@ void	place_numbers2(t_stacks *stacks, t_stacks *rev_stacks, t_place *place)
 	}
 	while (*((int *)stacks->sa->content) != place->min_val)
 		print_istruction(stacks, ra, "ra\n");
-	t_list *aux;
+	/*t_list *aux;
 	
 	aux = stacks->sa;
 	while (aux != NULL)
 	{
 		ft_printf("%d\n", *((int *)aux->content));
 		aux = aux->next;
-	}
-	end_long(stacks, rev_stacks, place);
+	}*/
+//check_sort(stacks);
+end_long(stacks, rev_stacks, place);
 }
 
 void	place_numbers3(t_stacks *stacks, t_place *place)

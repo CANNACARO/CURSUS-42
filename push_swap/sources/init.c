@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:54:11 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/20 16:41:38 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/22 21:31:43 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	init_place(t_place *place)
 	place->max_iter_b = 0;
 	place->cnt_b = 0;
 	place->cnt_b = 0;
+	place->aux = 0;
 	place->iter_sa = NULL;
 	place->iter_sb = NULL;
 	place->iter_rev_sa = NULL;

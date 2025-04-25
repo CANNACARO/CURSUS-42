@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 13:43:43 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/20 17:42:41 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:34:36 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	rot_both(t_stacks *stacks, t_place *place)
 		{
 			while (place->moves[0] < 0 && place->moves[1] < 0)
 			{
-				print_istruction(stacks, rrr, "rr\n");
+				print_istruction(stacks, rrr, "rrr\n");
 				place->moves[0]++;
 				place->moves[1]++;
 			}
@@ -111,12 +111,15 @@ void	iter_a(t_stacks *stacks,
 			place->aux_moves[0] = place->cnt_a + 1;
 		if (value < *((int *)place->iter_rev_sa->content)
 			&& value > *((int *)place->iter_rev_sa->next->content))
-			place->aux_moves[0] = place->cnt_a * (-1) - 1;
+			{
+				place->aux_moves[0] = place->cnt_a * (-1) - 1;
+				break ;
+			}
 		place->iter_sa = place->iter_sa->next;
 		place->iter_rev_sa = place->iter_rev_sa->next;
 		place->cnt_a++;
 	}
-	if (place->aux_moves[0] == -1)
+	if (place->aux_moves[0] == -1 && place->cnt_a != 0)
 	{
 		find_max_pos(stacks, rev_stacks, place);
 		place->aux_moves[0] = place->max_pos;

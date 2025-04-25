@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:04:37 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/20 11:20:40 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:42:08 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_sort(t_stacks *stacks)
 			return ;
 		curr = curr->next;
 	}
-	ft_printf("The list is already sorted\n");
+	//ft_printf("The list is already sorted\n");
 	end_short(stacks);
 }
 
@@ -59,7 +59,6 @@ void	print_istruction(t_stacks *stacks, void (*f)(t_stacks *), char *instr)
 {
 	f (stacks);
 	ft_printf("%s", instr);
-	//check_sort(stacks);
 }
 
 t_list	*copy_list(t_stacks *stacks, t_list *lst)
