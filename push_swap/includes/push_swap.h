@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 10:13:25 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/22 21:31:19 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/27 12:26:33 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,9 +142,12 @@ t_stacks	*parse_data(t_stacks *stacks, char *str[]);
 //TOOLS
 
 /*It checks if the number is repeated and add the node into the linked list*/
-void		ft_check_and_add_node(t_stacks *stacks, t_list *new, int num, t_strtol *support);
+void		ft_check_and_add_node(t_stacks *stacks,
+				t_list *new, int num, t_strtol *support);
 /*It checks if the list if already sorted*/
 void		check_sort(t_stacks *stacks);
+/*It checks if a lon list if already sorted*/
+void		check_sort_long(t_stacks *stacks, t_lis *l_val);
 /*It run the instruction function an print it*/
 void		print_istruction(t_stacks *stacks,
 				void (*f)(t_stacks *), char *instr);
@@ -219,8 +222,6 @@ void		store_lis(t_lis *l_val);
 
 // SORT LONG TOOLS
 
-/*It find the position of the first number of the LIS in sa original*/
-void		find_act_first_pos(t_stacks *stacks, t_lis *l_val);
 /*It pushes the numbers that are not contained on the LIS to stack b*/
 void		push_no_lis(t_stacks *stacks, t_lis *l_val);
 /*It place the numbers of b in the correct order of a
@@ -231,6 +232,9 @@ void		place_numbers2(t_stacks *stacks,
 				t_stacks *rev_stacks, t_place *place);
 /*Continuation of place numbers2*/
 void		place_numbers3(t_stacks *stacks, t_place *place);
+/*Continuation of place numbers3*/
+void		place_numbers4(t_stacks *stacks,
+				t_stacks *rev_stacks, t_place *place);
 
 //SORT LONG TOOLS 2
 
@@ -251,6 +255,8 @@ void		iter_a(t_stacks *stacks,
 
 //SORT LONG TOOLS 3
 
+/*It find the position of the first number of the LIS in sa original*/
+void		find_act_first_pos(t_stacks *stacks, t_lis *l_val);
 /*It finds the max position of a, in case that the element checked to
 	be pushed is the maximum of both stacks and there is no range
 	in a*/
@@ -258,6 +264,8 @@ void		find_max_pos(t_stacks *stacks,
 				t_stacks *rev_stacks, t_place *place);
 /*Continuation of find_max_pos*/
 void		find_max_pos2(t_stacks *stacks, t_place *place);
+/*Continuation of find_max_pos2*/
+void		find_max_pos3(t_place *place);
 /*It updates the array moves in case of be on a better case 
 	than the case before*/
 void		update_moves(t_place *place);

@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 13:43:43 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/25 17:34:36 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/27 11:57:56 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ void	iter_a(t_stacks *stacks,
 			place->aux_moves[0] = place->cnt_a + 1;
 		if (value < *((int *)place->iter_rev_sa->content)
 			&& value > *((int *)place->iter_rev_sa->next->content))
-			{
-				place->aux_moves[0] = place->cnt_a * (-1) - 1;
-				break ;
-			}
+		{
+			place->aux_moves[0] = place->cnt_a * (-1) - 1;
+			break ;
+		}
 		place->iter_sa = place->iter_sa->next;
 		place->iter_rev_sa = place->iter_rev_sa->next;
 		place->cnt_a++;

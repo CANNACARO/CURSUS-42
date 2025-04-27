@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 16:37:18 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/20 13:59:10 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/27 12:02:05 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	find_lis_algorithm(t_lis *lis_values)
 			if (*((int *)lis_values->aux->content)
 				< *((int *)lis_values->aux2->content)
 				&& ((1 + lis_values->len[lis_values->min_iter])
-				>= lis_values->len[lis_values->max_iter]))
+					>= lis_values->len[lis_values->max_iter]))
 			{
 				lis_values->len[lis_values->max_iter] = 1
 					+ lis_values->len[lis_values->min_iter];

@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 11:57:31 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/20 20:30:03 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/27 12:21:21 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	sort_long(t_stacks *stacks)
 		free_stack(stacks);
 	init_lis(lis_values);
 	find_lis(stacks, lis_values);
+	find_act_first_pos(stacks, lis_values);
 	push_no_lis(stacks, lis_values);
 	free_lis(lis_values);
 	place_numbers(stacks);

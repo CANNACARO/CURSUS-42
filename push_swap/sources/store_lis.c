@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 20:40:42 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/20 14:51:43 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/27 12:32:58 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	store_lis_pos(t_stacks *stacks, t_lis *l_val)
 {
 	l_val->min_iter = 0;
-	l_val->max_iter--;//aqui puedo quitarlo y en el bucle poner <, no <=
+	l_val->max_iter--;
 	while (l_val->min_iter <= l_val->max_iter)
 	{
 		if (l_val->len[l_val->min_iter] >= l_val->lis_len)
@@ -24,7 +24,7 @@ void	store_lis_pos(t_stacks *stacks, t_lis *l_val)
 			l_val->max_pos = l_val->min_iter;
 		}
 		l_val->min_iter++;
-	}//len = 4 max_pos = 5
+	}
 	l_val->lis = malloc(sizeof(int) * (l_val->lis_len));
 	if (!l_val->lis)
 		free_lis_error(l_val, stacks);
@@ -45,7 +45,7 @@ void	store_lis(t_lis *l_val)
 	i = 0;
 	j = 0;
 	l_val->aux = l_val->a_copy;
-	while (l_val->aux != NULL)
+	while (l_val->aux != NULL && j < l_val->lis_len)
 	{
 		if (i == l_val->lis[j])
 		{

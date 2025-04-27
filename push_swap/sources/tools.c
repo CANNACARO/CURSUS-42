@@ -6,13 +6,14 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 19:04:37 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/25 17:42:08 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/04/27 12:17:18 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_check_and_add_node(t_stacks *stacks, t_list *new, int num, t_strtol *support)
+void	ft_check_and_add_node(t_stacks *stacks,
+		t_list *new, int num, t_strtol *support)
 {
 	t_list	*curr;
 
@@ -44,6 +45,8 @@ void	check_sort(t_stacks *stacks)
 {
 	t_list	*curr;
 
+	if (!stacks->sa)
+		end_short(stacks);
 	curr = stacks->sa;
 	while (curr->next != NULL)
 	{
@@ -51,7 +54,26 @@ void	check_sort(t_stacks *stacks)
 			return ;
 		curr = curr->next;
 	}
-	//ft_printf("The list is already sorted\n");
+	end_short(stacks);
+}
+
+void	check_sort_long(t_stacks *stacks, t_lis *l_val)
+{
+	t_list	*curr;
+
+	if (!stacks->sa)
+	{
+		free_lis(l_val);
+		end_short(stacks);
+	}
+	curr = stacks->sa;
+	while (curr->next != NULL)
+	{
+		if (*((int *)curr->next->content) < *((int *)curr->content))
+			return ;
+		curr = curr->next;
+	}
+	free_lis(l_val);
 	end_short(stacks);
 }
 
