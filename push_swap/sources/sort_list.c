@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 11:57:31 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/04/27 12:21:21 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/05/11 19:12:21 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	divide_four_five(t_stacks *stacks, t_sort s_values)
 	{
 		s_values.lst = stacks->sa;
 		s_values.min_value = *((int *)s_values.lst->content);
-		while (s_values.lst->next != NULL)
+		while (s_values.lst != NULL)
 		{
 			s_values.curr_pos++;
 			if (*((int *)s_values.lst->content) < s_values.min_value)
