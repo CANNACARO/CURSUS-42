@@ -6,7 +6,7 @@
 #    By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/05 12:20:40 by jcaro-lo          #+#    #+#              #
-#    Updated: 2025/09/08 18:46:48 by jcaro-lo         ###   ########.fr        #
+#    Updated: 2025/09/10 17:00:11 by jcaro-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM = rm -rf
 SRC_DIR = ./srcs
 OBJ_DIR = ./obj
 
-SRC = main.c utils.c
+SRC = main.c utils.c threads.c free_resources.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 

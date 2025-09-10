@@ -6,20 +6,11 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 18:40:09 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/08 18:40:46 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:59:07 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-void	clear_program(t_data *data)
-{
-	if (data->philos)
-		free (data->philos);
-	if (data->forks)
-		free (data->forks);
-	free (data);
-}
 
 int	ft_atoi(const char *str)
 {
@@ -45,4 +36,21 @@ int	ft_atoi(const char *str)
 	}
 	res = res * sign;
 	return (res);
+}
+
+uint64_t get_time()
+{
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return (t.tv_sec * 1000 + t.tv_usec / 1000);
+}
+
+void	ft_usleep(int t)
+{
+	uint64_t	start_time;
+	
+	start_time = get_time();
+	while (get_time() - start_time < t)
+		usleep(10);
 }
