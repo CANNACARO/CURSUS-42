@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_resources.c                                   :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 16:58:51 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/11 10:50:02 by jcaro-lo         ###   ########.fr       */
+/*   Created: 2025/09/11 12:01:01 by jcaro-lo          #+#    #+#             */
+/*   Updated: 2025/09/11 16:33:54 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	free_data(t_data *data)
+/*void	eating(t_data *data)
 {
-	if (data->philos)
-		free (data->philos);
-	if (data->forks)
-		free (data->forks);
-	free (data);
-}
-
-int	clear_program(t_data *data)
-{
-	destroy_mutex(data);
-	return (error_msg(data, ERR_TH_JOIN));
-}
-
-int	error_msg(t_data *data, char *str)
-{
-	printf("%s", str);
-	free_data(data);
-	return (1);
-}
+	
+}*/

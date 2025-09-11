@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 18:40:09 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/10 16:59:07 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/11 11:18:09 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_atoi(const char *str)
 	return (res);
 }
 
-uint64_t get_time()
+uint64_t	get_time(void)
 {
 	struct timeval	t;
 
@@ -49,8 +49,8 @@ uint64_t get_time()
 void	ft_usleep(int t)
 {
 	uint64_t	start_time;
-	
+
 	start_time = get_time();
-	while (get_time() - start_time < t)
+	while (get_time() - start_time < (uint64_t)t)
 		usleep(10);
 }

@@ -6,15 +6,25 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:58:28 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/10 17:03:55 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:29:00 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void*	philo_routine(void *arg)
+void	first_think_msg(t_data *data)
 {
-	
+	int			i;
+	uint64_t	tim;
+
+	i = 0;
+	tim = get_time() - data->start_t;
+	while (i < data->philo_nb)
+	{
+		printf("%llu %d is thinking\n",
+			(unsigned long long)tim, data->philos[i].id);
+		i++;
+	}
 }
 
 int	start_threads(t_data *data)
@@ -30,45 +40,11 @@ int	start_threads(t_data *data)
 	return (0);
 }
 
-void	init_philo(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->philo_nb)
-	{
-		data->philos[i].data = data;
-		data->philos[i].id = i + 1;
-		i++;
-	}
-}
-
-int	init_data(t_data *data, int argc, char **argv)
-{
-	data->philo_nb = ft_atoi(argv[1]);
-	if (argc == 6)
-		data->food_nb = ft_atoi(argv[5]);
-	else
-		data->food_nb = -1;
-	data->death_t = ft_atoi(argv[2]);
-	data->eat_t = ft_atoi(argv[3]);
-	data->sleep_t = ft_atoi(argv[4]);
-	data->start_t = get_time();
-	data->philos = malloc(sizeof(t_philo) * data->philo_nb);
-	if (!data->philos)
-		return (error_msg(data, ERR_ALLOC));
-	init_philo(data);
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_nb);
-	if (!data->forks)
-		return (error_msg(data, ERR_ALLOC));
-	return (0);
-}
-
 int	check_input(int argc, char **argv)
 {
-	int i;
+	int	i;
 	int	j;
-	
+
 	i = 1;
 	if (argc != 5 && argc != 6)
 	{
@@ -106,6 +82,7 @@ int	main(int argc, char *argv[])
 		}
 		if (init_data(data, argc, argv))
 			return (1);
+		first_think_msg(data);
 		if (start_threads(data))
 			return (1);
 	}
