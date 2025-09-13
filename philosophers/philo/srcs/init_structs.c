@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 10:25:50 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/11 16:02:18 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/12 11:31:44 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_philo(t_data *data)
 	{
 		data->philos[i].data = data;
 		data->philos[i].id = i + 1;
+		data->philos[i].arr_pos = i;
 		data->philos[i].time_to_die = data->start_t;
 		data->philos[i].eat_number = 0;
 		i++;

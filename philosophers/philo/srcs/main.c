@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:58:28 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/11 16:29:00 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/13 11:04:09 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	main(int argc, char *argv[])
 
 	if (check_input(argc, argv))
 	{
+		if (argc == 6 && argv[5][0] == '0')
+			return (0);
 		data = malloc(sizeof(t_data));
 		if (!data)
 		{
@@ -85,7 +87,7 @@ int	main(int argc, char *argv[])
 		first_think_msg(data);
 		if (start_threads(data))
 			return (1);
+		free_data(data);
 	}
-	else
-		return (0); // tal vez pueda quitar este return
+	return (0);
 }

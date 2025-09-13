@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:38:21 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/11 16:33:39 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/13 12:44:07 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ typedef struct s_philo
 {
 	struct s_data	*data;		// Array to struct data
 	int				id;			// Number assigned to a philosopher
+	int				arr_pos;	// Actual position on the array philos
 	int				eat_number;	// NUmber of times the philosopher has eaten
-	int				is_dead;	// NO SE SI LO UTILIZARE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	uint64_t		time_to_die;/* Time counter to die. If it reaches 
-									data->death_t, the philosofer dies*/
+	/*int				is_dead;*/	
+	uint64_t		time_to_die;/* It gets the time at the start of 
+									the simulation and it is recalculated 
+									when the philosopher eats*/
 	pthread_t		th;			// Thread for each philosopher
 }	t_philo;
 
@@ -60,7 +62,17 @@ typedef struct s_data
 	pthread_mutex_t	*forks;		// Array of mutex to simulate the fork took
 	pthread_mutex_t	write;		// Mutex to protect the message printed
 	pthread_mutex_t	sv_mutex;	// Mutex for the supervisor routine
+	pthread_mutex_t	philo_full;	// Mutex to protect has_eaten variable
 }	t_data;
+
+typedef enum e_action
+{
+	TAKE_FORK,
+	EAT,
+	SLEEP,
+	THINK,
+	DIE
+}	t_action;
 
 // MAIN
 
@@ -84,27 +96,48 @@ void		init_philo(t_data *data);
 
 /*It creates all the threads with the function pthread_create*/
 int			create_threads(t_data *data);
+/*It has the loop to ceate all the philosophers threads*/
+int			create_philo_threads(t_data *data);
 /*It joins all the threads with the funciont pthread_join*/
 int			join_threads(t_data *data);
+
+// MUTEX
+
 /*It initiates the mutexes that simulate the forks*/
 int			init_forks_mutex(t_data *data);
 /*It initiates all the mutexes*/
 int			init_mutex(t_data *data);
+/*Second part of init mutex*/
+int			init_mutex2(t_data *data);
 /*It destroy all the mutexes*/
 int			destroy_mutex(t_data *data);
 
 // ROUTINES
 
-/*Part of the supervisor that checks if the philosopher has reached the time to die*/
+/*Part of the supervisor that checks if the 
+	philosopher has reached the time to die*/
 int			check_time_to_die(t_data *data);
 /*Supervisor routine*/
 void		*sv_routine(void	*arg);
 /*Routine for the philosophers (eat, sleep, think)*/
 void		*philo_routine(void *arg);
+/*It checks if  the supervisor routine has set the 
+	simulation tu 0. If it is 0 it ends the 
+	philosopher thread in order to end the simulation*/
+int			check_sim(t_data *data);
 
 // ACTIONS
 
+// EATING ACTION
 
+/*It simulates the eating action*/
+int			eating_act(t_philo *philo);
+/*Second part of eating action*/
+int			eating_act2(t_philo *philo, uint64_t now, uint64_t timestamp);
+/*It locks the mutexes that simulate the forks*/
+int			lock_forks(t_philo *philo, uint64_t timestamp);
+/*It unlocks the mutexes that simulate the forks*/
+void		unlock_forks(t_philo *philo);
 
 // UTILS
 
@@ -113,7 +146,9 @@ int			ft_atoi(const char *str);
 /*Function to get the result of gettimeofday() in miliseconds*/
 uint64_t	get_time(void);
 /*Function to make usleep more precise*/
-void		ft_usleep(int t);
+void		ft_usleep(uint64_t t);
+/*It prints any change of a philosopher state*/
+void		print_state(t_philo	*philo, t_action action, uint64_t timestamp);
 
 // FREE RESOURCES
 

@@ -6,13 +6,8 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 12:01:01 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/11 16:33:54 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/13 12:34:09 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-/*void	eating(t_data *data)
-{
-	
-}*/

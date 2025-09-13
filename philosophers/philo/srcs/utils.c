@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 18:40:09 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/11 11:18:09 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/13 12:38:57 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,32 @@ uint64_t	get_time(void)
 	return (t.tv_sec * 1000 + t.tv_usec / 1000);
 }
 
-void	ft_usleep(int t)
+void	ft_usleep(uint64_t t)
 {
 	uint64_t	start_time;
 
 	start_time = get_time();
-	while (get_time() - start_time < (uint64_t)t)
+	while (get_time() - start_time < t)
 		usleep(10);
+}
+
+void	print_state(t_philo	*philo, t_action action, uint64_t timestamp)
+{
+	pthread_mutex_lock(&philo->data->write);
+	if (action == TAKE_FORK)
+		printf("%llu %d has taken a fork\n",
+			(unsigned long long)timestamp, philo->id);
+	if (action == EAT)
+		printf("%llu %d is eating\n",
+			(unsigned long long)timestamp, philo->id);
+	if (action == SLEEP)
+		printf("%llu %d is sleeping\n",
+			(unsigned long long)timestamp, philo->id);
+	if (action == THINK)
+		printf("%llu %d is thinking\n",
+			(unsigned long long)timestamp, philo->id);
+	if (action == DIE)
+		printf("%llu %d died\n",
+			(unsigned long long) timestamp, philo->id);
+	pthread_mutex_unlock(&philo->data->write);
 }
