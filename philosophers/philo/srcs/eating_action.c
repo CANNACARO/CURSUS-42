@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 11:46:16 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/18 12:36:02 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/18 18:12:49 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,53 +69,27 @@ int	lock_forks(t_philo *philo)
 	if (check_sim(philo->data))
 		return (1);
 	if (philo->id % 2 != 0)
-	{
-		//printf("%lld %d intentando lock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
 		pthread_mutex_lock(&philo->data->forks[philo->arr_pos]);
-		//printf("%lld %d consiguió lock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
-	}
 	else
-	{
-		//printf("%lld %d intentando lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos -1);
 		pthread_mutex_lock(&philo->data->forks[philo->arr_pos - 1]);
-		//printf("%lld %d consiguió lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
-	}
 	print_state(philo, TAKE_FORK);
 	if (check_sim(philo->data))
 	{
 		if (philo->id % 2 != 0)
-		{
-			//printf("%lld %d unlock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
 			pthread_mutex_unlock(&philo->data->forks[philo->arr_pos]);
-		}
 		else
-		{
-			//printf("%lld %d unlock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos-1);
 			pthread_mutex_unlock(&philo->data->forks[philo->arr_pos - 1]);
-		}
 		return (1);
 	}
 	if (philo->id % 2 != 0)
 	{
 		if (philo->id == 1)
-		{
-			//printf("%lld %d intentando lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->data->philo_nb - 1);
 			pthread_mutex_lock(&philo->data->forks[philo->data->philo_nb - 1]);
-			//printf("%lld %d consiguió lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->data->philo_nb - 1);
-		}
 		else
-		{
-			//printf("%lld %d intentando lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
 			pthread_mutex_lock(&philo->data->forks[philo->arr_pos - 1]);
-			//printf("%lld %d consiguió lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
-		}
 	}
 	else
-	{
-		//printf("%lld %d intentando lock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
 		pthread_mutex_lock(&philo->data->forks[philo->arr_pos]);
-		//printf("%lld %d consiguió lock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
-	}
 	return (0);
 }
 
@@ -124,24 +98,15 @@ void	unlock_forks(t_philo *philo)
 	if (philo->id % 2 != 0)
 	{
 		if (philo->id == 1)
-		{
-			//printf("%lld %d unlock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->data->philo_nb - 1);
 			pthread_mutex_unlock(&philo->data
 				->forks[philo->data->philo_nb - 1]);
-		}
 		else
-		{
-			//printf("%lld %d unlock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
 			pthread_mutex_unlock(&philo->data->forks[philo->arr_pos - 1]);
-		}
-		//printf("%lld %d unlock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
 		pthread_mutex_unlock(&philo->data->forks[philo->arr_pos]);
 	}
 	else
 	{
-		//printf("%lld %d unlock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
 		pthread_mutex_unlock(&philo->data->forks[philo->arr_pos]);
-		//printf("%lld %d unlock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
 		pthread_mutex_unlock(&philo->data->forks[philo->arr_pos - 1]);
 	}
 }

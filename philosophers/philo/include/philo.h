@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:38:21 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/16 17:35:52 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/18 18:13:07 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_philo
 	int				id;			// Number assigned to a philosopher
 	int				arr_pos;	// Actual position on the array philos
 	int				eat_number;	// Number of times the philosopher has eaten
-	/*int				is_dead;*/	
 	uint64_t		last_meal;	/* It gets the time at the start of 
 									the simulation and it is recalculated 
 									when the philosopher eats*/
