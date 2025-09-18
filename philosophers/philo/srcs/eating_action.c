@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 11:46:16 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/13 12:43:54 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:36:02 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,33 @@
 
 int	eating_act(t_philo *philo)
 {
-	uint64_t	now;
-	uint64_t	timestamp;
-
-	now = get_time();
-	timestamp = now - philo->data->start_t;
-	if (lock_forks(philo, timestamp))
+	if (philo->data->philo_nb == 1)
+	{
+		pthread_mutex_lock(&philo->data->forks[0]);
+		print_state(philo, TAKE_FORK);
+		pthread_mutex_unlock(&philo->data->forks[0]);
 		return (1);
-	now = get_time();
-	timestamp = now - philo->data->start_t;
-	print_state(philo, TAKE_FORK, timestamp);
+	}
+	if (lock_forks(philo))
+		return (1);
+	print_state(philo, TAKE_FORK);
 	if (check_sim(philo->data))
 	{
 		unlock_forks(philo);
 		return (1);
 	}
-	if (eating_act2(philo, now, timestamp))
+	print_state(philo, EAT);
+	pthread_mutex_lock(&philo->l_meal);
+	philo->last_meal = get_time();
+	pthread_mutex_unlock(&philo->l_meal);
+	if (eating_act2(philo))
 		return (1);
 	return (0);
 }
 
-int	eating_act2(t_philo *philo, uint64_t now, uint64_t timestamp)
+int	eating_act2(t_philo *philo)
 {
-	print_state(philo, EAT, timestamp);
-	philo->time_to_die = now;
-	while ((now - philo->data->start_t - timestamp) < philo->data->eat_t)
+	while ((get_time() - philo->last_meal) < philo->data->eat_t)
 	{
 		if (check_sim(philo->data))
 		{
@@ -46,46 +48,74 @@ int	eating_act2(t_philo *philo, uint64_t now, uint64_t timestamp)
 			return (1);
 		}
 		ft_usleep(1);
-		now = get_time();
 	}
 	unlock_forks(philo);
-	philo->eat_number++;
-	if (philo->eat_number == philo->data->food_nb)
+	if (philo->data->food_nb >= 0)
 	{
-		pthread_mutex_lock(&philo->data->philo_full);
-		philo->data->has_eaten++;
-		pthread_mutex_unlock(&philo->data->philo_full);
-		return (1);
+		philo->eat_number++;
+		if (philo->eat_number == philo->data->food_nb)
+		{
+			pthread_mutex_lock(&philo->data->philo_full);
+			philo->data->has_eaten++;
+			pthread_mutex_unlock(&philo->data->philo_full);
+			return (1);
+		}
 	}
 	return (0);
 }
 
-int	lock_forks(t_philo *philo, uint64_t timestamp)
+int	lock_forks(t_philo *philo)
 {
 	if (check_sim(philo->data))
 		return (1);
 	if (philo->id % 2 != 0)
+	{
+		//printf("%lld %d intentando lock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
 		pthread_mutex_lock(&philo->data->forks[philo->arr_pos]);
+		//printf("%lld %d consiguió lock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
+	}
 	else
+	{
+		//printf("%lld %d intentando lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos -1);
 		pthread_mutex_lock(&philo->data->forks[philo->arr_pos - 1]);
-	print_state(philo, TAKE_FORK, timestamp);
+		//printf("%lld %d consiguió lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
+	}
+	print_state(philo, TAKE_FORK);
 	if (check_sim(philo->data))
 	{
 		if (philo->id % 2 != 0)
+		{
+			//printf("%lld %d unlock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
 			pthread_mutex_unlock(&philo->data->forks[philo->arr_pos]);
+		}
 		else
+		{
+			//printf("%lld %d unlock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos-1);
 			pthread_mutex_unlock(&philo->data->forks[philo->arr_pos - 1]);
+		}
 		return (1);
 	}
 	if (philo->id % 2 != 0)
 	{
 		if (philo->id == 1)
+		{
+			//printf("%lld %d intentando lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->data->philo_nb - 1);
 			pthread_mutex_lock(&philo->data->forks[philo->data->philo_nb - 1]);
+			//printf("%lld %d consiguió lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->data->philo_nb - 1);
+		}
 		else
+		{
+			//printf("%lld %d intentando lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
 			pthread_mutex_lock(&philo->data->forks[philo->arr_pos - 1]);
+			//printf("%lld %d consiguió lock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
+		}
 	}
 	else
+	{
+		//printf("%lld %d intentando lock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
 		pthread_mutex_lock(&philo->data->forks[philo->arr_pos]);
+		//printf("%lld %d consiguió lock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
+	}
 	return (0);
 }
 
@@ -93,16 +123,25 @@ void	unlock_forks(t_philo *philo)
 {
 	if (philo->id % 2 != 0)
 	{
-		pthread_mutex_unlock(&philo->data->forks[philo->arr_pos]);
 		if (philo->id == 1)
+		{
+			//printf("%lld %d unlock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->data->philo_nb - 1);
 			pthread_mutex_unlock(&philo->data
 				->forks[philo->data->philo_nb - 1]);
+		}
 		else
+		{
+			//printf("%lld %d unlock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
 			pthread_mutex_unlock(&philo->data->forks[philo->arr_pos - 1]);
+		}
+		//printf("%lld %d unlock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
+		pthread_mutex_unlock(&philo->data->forks[philo->arr_pos]);
 	}
 	else
 	{
-		pthread_mutex_unlock(&philo->data->forks[philo->arr_pos - 1]);
+		//printf("%lld %d unlock left[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos);
 		pthread_mutex_unlock(&philo->data->forks[philo->arr_pos]);
+		//printf("%lld %d unlock right[%d]\n", (unsigned long long)(get_time() - philo->data->start_t), philo->id, philo->arr_pos - 1);
+		pthread_mutex_unlock(&philo->data->forks[philo->arr_pos - 1]);
 	}
 }

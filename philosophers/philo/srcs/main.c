@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 10:58:28 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/13 11:04:09 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/16 16:44:11 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	first_think_msg(t_data *data)
 {
 	int			i;
-	uint64_t	tim;
+	uint64_t	timestamp;
 
 	i = 0;
-	tim = get_time() - data->start_t;
+	timestamp = get_time() - data->start_t;
 	while (i < data->philo_nb)
 	{
 		printf("%llu %d is thinking\n",
-			(unsigned long long)tim, data->philos[i].id);
+			(unsigned long long)timestamp, data->philos[i].id);
 		i++;
 	}
 }
@@ -74,6 +74,11 @@ int	main(int argc, char *argv[])
 
 	if (check_input(argc, argv))
 	{
+		if (argv[1][0] == '0' && argv[1][1] == '\0')
+		{
+			printf(ERR_INPUT);
+			return (0);
+		}
 		if (argc == 6 && argv[5][0] == '0')
 			return (0);
 		data = malloc(sizeof(t_data));

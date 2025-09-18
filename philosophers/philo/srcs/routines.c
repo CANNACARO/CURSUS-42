@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:28:24 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/13 11:31:15 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:34:28 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 int	check_time_to_die(t_data *data)
 {
 	int			i;
-	uint64_t	now;
-	uint64_t	timestamp;
+	uint64_t	last_meal;
 
 	i = 0;
-	now = get_time();
-	timestamp = now - data->start_t;
 	while (i < data->philo_nb)
 	{
-		if (now - data->philos[i].time_to_die > data->death_t)
+		pthread_mutex_lock(&data->philos[i].l_meal);
+		last_meal = data->philos[i].last_meal;
+		pthread_mutex_unlock(&data->philos[i].l_meal);
+		if (get_time() - last_meal > (uint64_t)data->death_t)
 		{
 			pthread_mutex_lock(&data->sv_mutex);
 			data->sim_on = 0;
 			pthread_mutex_unlock(&data->sv_mutex);
-			print_state(&data->philos[i], DIE, timestamp);
+			print_state(&data->philos[i], DIE);
 			return (1);
 		}
 		i++;
@@ -55,7 +55,7 @@ void	*sv_routine(void *arg)
 				return (NULL);
 			}
 		}
-		ft_usleep(1);
+		ft_usleep(0.95);
 	}
 }
 
@@ -68,11 +68,11 @@ void	*philo_routine(void *arg)
 	{
 		if (eating_act(philo))
 			return (NULL);
-		
+		if (sleep_act(philo))
+			return (NULL);
+		if (think_act(philo))
+			return (NULL);
 	}
-	
-	
-	//return (NULL);
 }
 
 int	check_sim(t_data *data)

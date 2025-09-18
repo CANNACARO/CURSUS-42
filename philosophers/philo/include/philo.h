@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 12:38:21 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/13 12:44:07 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/16 17:35:52 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,29 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <limits.h>
 
 # define ERR_ALLOC "Allocation ERROR\n"
-# define ERR_INPUT "The input contains a not number argument\n"
+# define ERR_INPUT "Invalid argument\n"
 # define ERR_INPUT_NUMBER "The number of arguments is not correct\n"
 # define ERR_TH_CREATE "Error at creating the thread\n"
 # define ERR_TH_JOIN "Error at joining the thread\n"
 # define ERR_MUTEX_INIT "Error at initiating the mutex\n"
 # define ERR_MUTEX_DESTROY "Error at destroyint the mutex\n"
+# define UINT64_ERROR UINT64_MAX
 
 typedef struct s_philo
 {
 	struct s_data	*data;		// Array to struct data
 	int				id;			// Number assigned to a philosopher
 	int				arr_pos;	// Actual position on the array philos
-	int				eat_number;	// NUmber of times the philosopher has eaten
+	int				eat_number;	// Number of times the philosopher has eaten
 	/*int				is_dead;*/	
-	uint64_t		time_to_die;/* It gets the time at the start of 
+	uint64_t		last_meal;	/* It gets the time at the start of 
 									the simulation and it is recalculated 
 									when the philosopher eats*/
 	pthread_t		th;			// Thread for each philosopher
+	pthread_mutex_t	l_meal;		//Mutex to protect last_meal variable
 }	t_philo;
 
 typedef struct s_data
@@ -109,6 +112,8 @@ int			init_forks_mutex(t_data *data);
 int			init_mutex(t_data *data);
 /*Second part of init mutex*/
 int			init_mutex2(t_data *data);
+/*Third part of init_mutex*/
+int			init_mutex3(t_data *data);
 /*It destroy all the mutexes*/
 int			destroy_mutex(t_data *data);
 
@@ -122,33 +127,40 @@ void		*sv_routine(void	*arg);
 /*Routine for the philosophers (eat, sleep, think)*/
 void		*philo_routine(void *arg);
 /*It checks if  the supervisor routine has set the 
-	simulation tu 0. If it is 0 it ends the 
+	simulation to 0. If it is 0 it ends the 
 	philosopher thread in order to end the simulation*/
 int			check_sim(t_data *data);
 
 // ACTIONS
+
+/*It simulates the sleeping action*/
+int			sleep_act(t_philo *philo);
+/*It simulates the thinking action. I included 
+	a thinking time to prevent that a "slower" 
+	philosophers never eates and dies of starvation*/
+int			think_act(t_philo *philo);
 
 // EATING ACTION
 
 /*It simulates the eating action*/
 int			eating_act(t_philo *philo);
 /*Second part of eating action*/
-int			eating_act2(t_philo *philo, uint64_t now, uint64_t timestamp);
+int			eating_act2(t_philo *philo);
 /*It locks the mutexes that simulate the forks*/
-int			lock_forks(t_philo *philo, uint64_t timestamp);
+int			lock_forks(t_philo *philo);
 /*It unlocks the mutexes that simulate the forks*/
 void		unlock_forks(t_philo *philo);
 
 // UTILS
 
 /*It converts a string composed of digits into an int*/
-int			ft_atoi(const char *str);
+uint64_t	ft_atoi(const char *str);
 /*Function to get the result of gettimeofday() in miliseconds*/
 uint64_t	get_time(void);
 /*Function to make usleep more precise*/
 void		ft_usleep(uint64_t t);
 /*It prints any change of a philosopher state*/
-void		print_state(t_philo	*philo, t_action action, uint64_t timestamp);
+void		print_state(t_philo	*philo, t_action action);
 
 // FREE RESOURCES
 

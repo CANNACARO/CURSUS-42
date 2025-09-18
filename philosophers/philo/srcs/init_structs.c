@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 10:25:50 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/12 11:31:44 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/16 17:37:53 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_philo(t_data *data)
 		data->philos[i].data = data;
 		data->philos[i].id = i + 1;
 		data->philos[i].arr_pos = i;
-		data->philos[i].time_to_die = data->start_t;
+		data->philos[i].last_meal = data->start_t;
 		data->philos[i].eat_number = 0;
 		i++;
 	}
@@ -39,6 +39,10 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->death_t = ft_atoi(argv[2]);
 	data->eat_t = ft_atoi(argv[3]);
 	data->sleep_t = ft_atoi(argv[4]);
+	if ((uint64_t)data->philo_nb == UINT64_ERROR
+		|| data->death_t == UINT64_ERROR
+		|| data->eat_t == UINT64_ERROR || data->sleep_t == UINT64_ERROR)
+		return (error_msg(data, ERR_INPUT));
 	data->start_t = get_time();
 	data->philos = malloc(sizeof(t_philo) * data->philo_nb);
 	if (!data->philos)
