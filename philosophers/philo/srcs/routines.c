@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:28:24 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/18 12:34:28 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:15:16 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	check_time_to_die(t_data *data)
 void	*sv_routine(void *arg)
 {
 	t_data	*data;
+	int		has_eaten;
 
 	data = (t_data *) arg;
 	while (1)
@@ -47,7 +48,10 @@ void	*sv_routine(void *arg)
 			return (NULL);
 		if (data->food_nb >= 0)
 		{
-			if (data->has_eaten == data->philo_nb)
+			pthread_mutex_lock(&data->philo_full);
+			has_eaten = data->has_eaten;
+			pthread_mutex_unlock(&data->philo_full);
+			if (has_eaten == data->philo_nb)
 			{
 				pthread_mutex_lock(&data->sv_mutex);
 				data->sim_on = 0;
@@ -55,7 +59,7 @@ void	*sv_routine(void *arg)
 				return (NULL);
 			}
 		}
-		ft_usleep(0.95);
+		ft_usleep(1);
 	}
 }
 

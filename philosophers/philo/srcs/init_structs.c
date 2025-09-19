@@ -6,7 +6,7 @@
 /*   By: jcaro-lo <jcaro-lo@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 10:25:50 by jcaro-lo          #+#    #+#             */
-/*   Updated: 2025/09/16 17:37:53 by jcaro-lo         ###   ########.fr       */
+/*   Updated: 2025/09/19 15:47:37 by jcaro-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	else
 		data->food_nb = -1;
 	data->sim_on = 1;
+	data->has_eaten = 0;
 	data->death_t = ft_atoi(argv[2]);
 	data->eat_t = ft_atoi(argv[3]);
 	data->sleep_t = ft_atoi(argv[4]);
